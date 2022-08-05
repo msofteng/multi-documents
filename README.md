@@ -1,47 +1,40 @@
-# ms/multi-documents
+# multi-documents
 
 <!-- Initializer for Laravel Todos START  -->
+
 ## TODO
 
-This project was generated using
-([Initializer for Laravel](https://laravel.initializer.dev)). To finish
-the project setup run the following in your terminal:
+Este projeto foi gerado usando
+([Inicializador para Laravel](https://laravel.initializer.dev)). Para finalizar a configuração do projeto, execute o seguinte no seu terminal:
 
 ```shell
-./initialize
+./initialize.sh
 ```
 
 <!-- Initializer for Laravel Todos END  -->
-## Local Development
+## Desenvolvimento Local
 
-This project uses
-[Laravel Sail](https://laravel.com/docs/sail) to manage
-its local development stack. For more detailed usage instructions take a look at
-the [official documentation](https://laravel.com/docs/sail).
+Este projeto utiliza
+[Laravel Sail](https://laravel.com/docs/sail) para gerenciar sua pilha de desenvolvimento local. Para instruções de uso mais detalhadas, consulte
+a [documentação oficial](https://laravel.com/docs/sail).
 
 ### Links
 
-- **Your Application** http://localhost
-- **Preview Emails via Mailhog** http://localhost:8025
-- **MeiliSearch Administration Panel** http://localhost:7700
+- **multi-documents (local)** http://localhost
+- **Visualizar e-mails via Mailhog** http://localhost:8025
+- **Painel de administração do MeiliSearch** http://localhost:7700
 
-### Start the development server
+### Inicie o servidor de desenvolvimento
 
-```shell
-./vendor/bin/sail up
-```
+Não precisa utilizar comandos do [Laravel Sail](https://laravel.com/docs/9.x/sail) para executar este projeto, apenas inicializando o primeiro comando acima em seu terminal bash, de preferência [Git Bash](https://git-scm.com/) ou PowerShell o multi-documents será instalado, construído e executado dentro do [Docker](https://www.docker.com/).
 
-You can also use the `-d` option, to start the server in
-the background if you do not care about the logs or still want to use your
-terminal for other things.
+### Crie recursos de front-end
 
-### Build frontend assets
+Quem conhece o universo do framework Laravel entenderá como explorar recursos de front-end, utilizando o [Laravel Mix](https://laravel.com/docs/9.x/mix) para fazer o empacotamento dos pacotes [npm](https://www.npmjs.com/), onde há páginas de estilo CSS, bibliotecas e frameworks JavaScript para colocar na pasta pública do projeto.
 
-```shell
-./vendor/bin/sail npm watch
-```
+### Executar testes
 
-### Run Tests
+Como a execução deste projeto roda dentro do [Docker](https://www.docker.com/), não vejo necessidade de realização de testes já que ele é atualizado em tempo real, mas se você já é um desenvolvedor experiente e enxerga a necessidade de implementar este recurso, é só entrar no diretório do projeto dentro do terminal e digitar:
 
 ```shell
 ./vendor/bin/sail test
