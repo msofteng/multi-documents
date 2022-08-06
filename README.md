@@ -26,7 +26,7 @@ a [documentação oficial](https://laravel.com/docs/sail).
 
 ### Inicie o servidor de desenvolvimento
 
-Não precisa utilizar comandos do [Laravel Sail](https://laravel.com/docs/9.x/sail) para executar este projeto, apenas inicializando o primeiro comando acima em seu terminal bash, de preferência [Git Bash](https://git-scm.com/) ou PowerShell o multi-documents será instalado, construído e executado dentro do [Docker](https://www.docker.com/). Portanto, certifique-se de que o [Docker](https://www.docker.com/) esteja instalado em sua máquina e caso não tenha-o, pode baixá-lo [aqui](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe). Ah! Antes de clicar neste link anterior, leia a [página](https://docs.docker.com/desktop/) de instalação deste programa para sanar suas dúvidas pré-instalação. 
+Não precisa utilizar comandos do [Laravel Sail](https://laravel.com/docs/9.x/sail) para executar este projeto, apenas inicializando o primeiro comando acima em seu terminal bash, de preferência [Git Bash](https://git-scm.com/) ou PowerShell o multi-documents será instalado, construído e executado dentro do [Docker](https://www.docker.com/). Portanto, certifique-se de que o [Docker](https://www.docker.com/) esteja instalado em sua máquina e caso não tenha-o, pode baixá-lo [aqui](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe). Ah! Antes de clicar neste link anterior, leia a [página](https://docs.docker.com/desktop/) de instalação deste programa para sanar suas dúvidas pré-instalação.
 
 ### Crie recursos de front-end
 
