@@ -1,0 +1,31 @@
+{
+    "nome": "André Pereira",
+    "user": "andre.pereira14",
+    "senha": "andre123",
+    "local": {
+        "nome": "Santos, São Paulo, Brasil",
+        "localizacao": {
+            "latitude": 12.5456755,
+            "longitude": 54545.566554
+        }
+    },
+    "documents": [
+        {
+            "nome": "RG",
+            "dados": {
+                "nome_completo": "Luciano Barbosa de Oliveira",
+                "filiacao_pai": "Aldair Barbosa de Oliveira",
+                "filiacao_mae": "Heloísa Apache de Oliveira",
+                "naturalidade": "Florianópolis - SC",
+                "origem_documento": "Brusque - SC",
+                "data_nascimento": "07/06/1985",
+                "data_expedicao": "12/04/1993",
+                "orgao_emissor": "SSP",
+                "estado": "Santa Catarina, Brasil",
+                "serie": "0000-1",
+                "assinatura": "data:image/png;base64,iVBORw0KGgoAAAA...",
+                "numero_rg": "16.000.000-01"
+            }
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "nome": "André Pereira",
+    "user": "andre.pereira14",
+    "senha": "andre123",
+    "local": {
+        "nome": "Santos, São Paulo, Brasil",
+        "localizacao": {
+            "latitude": 12.5456755,
+            "longitude": 54545.566554
+        }
+    }
+}

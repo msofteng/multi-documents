@@ -1,0 +1,27 @@
+{
+    "nome": "CPF",
+    "pais": "Brasil",
+    "descricao": "Cadastro de Pessoa Física",
+    "dados": [
+        {
+            "parametro": "nome",
+            "tipo": "texto",
+            "regex": null,
+            "info": {
+                "label": "nome",
+                "title": "Digite o seu nome",
+                "placeholder": "Ex.: João Gabriel"
+            }
+        },
+        {
+            "parametro": "telefone (fixo)",
+            "tipo": "texto",
+            "regex": "(00) 0000-0000",
+            "info": {
+                "label": "nome",
+                "title": "Digite o seu telefone fixo",
+                "placeholder": "Ex.: (11) 3456-7890"
+            }
+        }
+    ]
+}

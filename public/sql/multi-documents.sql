@@ -97,7 +97,7 @@ INSERT INTO `documento` (`nome`, `pais`, `descricao`) VALUES ('RG', 'Brasil', 'R
 -- Data for table `parametro`
 -- -----------------------------------------------------
 
-INSERT INTO `parametro` (`titulo`, `tipo`, `regex`) VALUES ('nome_completo', 'texto', '');
+INSERT INTO `parametro` (`titulo`, `tipo`, `regex`) VALUES ('nome_completo', 'texto', NULL);
 INSERT INTO `parametro` (`titulo`, `tipo`, `regex`) VALUES ('filiacao_pai', 'texto', NULL);
 INSERT INTO `parametro` (`titulo`, `tipo`, `regex`) VALUES ('filiacao_mae', 'texto', NULL);
 INSERT INTO `parametro` (`titulo`, `tipo`, `regex`) VALUES ('naturalidade', 'texto', NULL);
