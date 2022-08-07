@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Database\MySQL\DAO;
 
-class DocumentoDAO implements DAO
+class DocumentoDAO implements DocumentoDAO
 {
 	// @Override
     public static function insert(object $json): int {

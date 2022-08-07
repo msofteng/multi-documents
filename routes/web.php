@@ -1,7 +1,9 @@
 <?php
 
+use App\Database\MySQL\UsuarioDAOImpl;
 use App\Models\Local;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,7 @@ Route::get("/", function () {
 
 Route::get("/user/{id}", function ($id) {
     // return Redirect::to("/");
-    return view("index", ["id" => $id, "usuario" => new Usuario(1, "Mateus Silva", "mateus22", "abc", new Local("Santos - SP", 445.34565, 55443.6656), "34uj34jd")]);
+    return view("index", ["id" => UsuarioDAOImpl::count(), "usuario" => new Usuario(1, "Mateus Silva", "mateus22", "abc", new Local("Santos - SP", 445.34565, 55443.6656), "34uj34jd")]);
 });
 
 
