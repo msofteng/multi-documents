@@ -7,7 +7,7 @@ use App\Models\Usuario;
 
 interface DAO
 {
-    public static function insert(object $json): string | null;
+    public static function insert(object $json): int;
 
     public static function update(object $json): string | null;
 

@@ -7,7 +7,7 @@ use App\Database\MySQL\DAO;
 class ParametroDAO implements DAO
 {
 	// @Override
-    public static function insert(object $json): string {
+    public static function insert(object $json): int {
         return "";
     }
 

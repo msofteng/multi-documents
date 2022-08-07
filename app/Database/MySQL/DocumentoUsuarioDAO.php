@@ -7,7 +7,7 @@ use App\Database\MySQL\DAO;
 class DocumentoUsuarioDAO implements DAO
 {
 	// @Override
-    public static function insert(object $json): string {
+    public static function insert(object $json): int {
         return "";
     }
 
