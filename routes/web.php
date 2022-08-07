@@ -1,7 +1,8 @@
 <?php
 
+use App\Models\Local;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Redirect;
 
 /*
     --------------------------------------------------------------------------
@@ -17,8 +18,8 @@ Route::get("/", function () {
 });
 
 Route::get("/user/{id}", function ($id) {
-    return Redirect::to("/");
-    // return view("index", ["id" => $id, "message" => "O usuário está sendo exibido na tela"]);
+    // return Redirect::to("/");
+    return view("index", ["id" => $id, "usuario" => new Usuario(1, "Mateus Silva", "mateus22", "abc", new Local("Santos - SP", 445.34565, 55443.6656), "34uj34jd")]);
 });
 
 
