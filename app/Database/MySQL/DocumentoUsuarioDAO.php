@@ -2,47 +2,47 @@
 
 namespace App\Models;
 
-use App\Database\MySQL\DAO;
+use App\Database\DAO;
 
 class DocumentoUsuarioDAO implements DAO
 {
 	// @Override
-    public static function insert(object $json): int {
+    public function insert(object $json): int {
         return "";
     }
 
     // @Override
-    public static function update(object $json): string {
+    public function change(object $json): bool {
         return "";
 	}
 
     // @Override
-    public static function delete(int $id): string {
+    public function delete(int $id): int {
         return "";
 	}
 
     // @Override
-    public static function get(int $id): object {
+    public function get(int $id): object | null {
         return json_decode("");
 	}
 
     // @Override
-    public static function list(string $coluna, string $ordem, int $limit, int $offset): array {
+    public function list(string $coluna = null, string $ordem = null, int $limit = null, int $offset = null): array | null {
         return array();
 	}
 
     // @Override
-    public static function find(string $q, string $coluna, string $ordem, int $limit, int $offset): array {
+    public function find(string $q, string $coluna = null, string $ordem = null, int $limit = null, int $offset = null): array | null {
         return array();
 	}
 
     // @Override
-    public static function count(string $coluna, string $ordem): int {
+    public function count(): int {
         return 1;
 	}
 
     // @Override
-    public static function countFind(string $q, string $coluna, string $ordem): int {
+    public function countFind(string $q): int {
         return 1;
 	}
 }

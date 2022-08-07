@@ -11,7 +11,7 @@ class Documento
     /** @var Parametro[] */
     public array $parametros;
 
-    public function __construct(int $id = null, string $nome = null, string $pais = null, string $descricao = null, array $parametros = null) {
+    public function __construct(int $id = null, string $nome = null, string $pais = null, string $descricao = null, array $parametros = array()) {
         $this->id = $id;
         $this->nome = $nome;
         $this->pais = $pais;

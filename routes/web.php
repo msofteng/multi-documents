@@ -2,6 +2,7 @@
 
 use App\Services\UsuarioService;
 use App\Services\DocumentoService;
+use App\Services\ParametroService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -93,7 +94,7 @@ Route::get("/api/documentos", function (Request $request) {
 
 Route::get("/api/documentos/buscar", function (Request $request) {
     $usuarios = (new DocumentoService())->findAll($request);
-    return (!empty($usuarios)) ? response($usuarios, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "Os usuários não foram encontrados. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
+    return (!empty($usuarios)) ? response($usuarios, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "Os documentos não foram encontrados. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/documentos/total", function (Request $request) {
@@ -102,7 +103,7 @@ Route::get("/api/documentos/total", function (Request $request) {
 });
 
 Route::get("/api/documentos/buscar/total", function (Request $request) {
-    $qtd = (new UsuarioService())->countSearchLines($request);
+    $qtd = (new DocumentoService())->countSearchLines($request);
     return response(["qtd" => $qtd], 200, ["Content-Type" => "application/json"]);
 });
 
@@ -111,27 +112,43 @@ Route::get("/api/documentos/buscar/total", function (Request $request) {
 // rotas (parâmetro)
 
 Route::post("/api/parametro/salvar", function (Request $request) {
-    return view("index");
+    $id = (new ParametroService())->create($request);
+    return ($id > 0) ? response(["message" => "O parâmetro foi cadastrado com sucesso"], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: O parâmetro não foi cadastrado"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::put("/api/parametro/atualizar", function (Request $request) {
-    return view("index");
+    $bool = (new ParametroService())->update($request);
+    return ($bool) ? response(["message" => "O parâmetro foi atualizado com sucesso"], 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO!"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::delete("/api/parametro/excluir", function (Request $request) {
-    return view("index");
+    $rows = (new ParametroService())->delete($request);
+    return ($rows > 0) ? response(["message" => "O parâmetro foi excluído com sucesso"], 204, ["Content-Type" => "application/json"]) : response(["mensagem" => "O parâmetro não foi encontrado"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/parametro", function (Request $request) {
-    return view("index");
+    $parametro = (new ParametroService())->get($request);
+    return (!empty($parametro)) ? response($parametro->toString(), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "O parâmetro não foi encontrado"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/parametros", function (Request $request) {
-    return view("index");
+    $parametros = (new ParametroService())->listAll($request);
+    return (!empty($parametros)) ? response($parametros, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "Os parâmetros não foram encontrados. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/parametros/buscar", function (Request $request) {
-    return view("index");
+    $parametros = (new ParametroService())->findAll($request);
+    return (!empty($parametros)) ? response($parametros, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "Os parâmetros não foram encontrados. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
+});
+
+Route::get("/api/parametros/total", function (Request $request) {
+    $qtd = (new ParametroService())->countRows();
+    return response(["qtd" => $qtd], 200, ["Content-Type" => "application/json"]);
+});
+
+Route::get("/api/parametros/buscar/total", function (Request $request) {
+    $qtd = (new ParametroService())->countSearchLines($request);
+    return response(["qtd" => $qtd], 200, ["Content-Type" => "application/json"]);
 });
 
 
@@ -157,23 +174,15 @@ Route::get("/api/usuario/documentos", function (Request $request) {
     return view("index");
 });
 
-Route::get("/api/usuarios/documento", function (Request $request) {
-    return view("index");
-});
-
-Route::get("/api/usuarios/documentos", function (Request $request) {
-    return view("index");
-});
-
-Route::get("/api/usuarios/buscar", function (Request $request) {
-    return view("index");
-});
-
 Route::get("/api/usuario/documentos/buscar", function (Request $request) {
     return view("index");
 });
 
-Route::get("/api/usuarios/documentos/buscar", function (Request $request) {
+Route::get("/api/usuario/documentos/total", function (Request $request) {
+    return view("index");
+});
+
+Route::get("/api/usuario/documentos/buscar/total", function (Request $request) {
     return view("index");
 });
 

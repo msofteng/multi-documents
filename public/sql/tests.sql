@@ -2,11 +2,11 @@ USE `multi-documents`;
 
 # Cadastrar Documento
 
-INSERT INTO documento (nome, pais, descricao) VALUES ('a', 'a', 'a');
+# INSERT INTO documento (nome, pais, descricao) VALUES ('a', 'a', 'a');
 
 # Cadastrar Informação
 
-INSERT INTO parametro (titulo, tipo, regex) VALUES ('a', 'a', NULL);
+# INSERT INTO parametro (titulo, tipo, regex) VALUES ('a', 'a', NULL);
 
 # Cadastrar Informação (Documento)
 
@@ -14,7 +14,7 @@ INSERT INTO dados_documento (label, title, placeholder, parametro_id, documento_
 
 # Cadastrar Usuário
 
-INSERT INTO usuario (nome, local, user, senha, location, token) VALUES ('a', 'a', 'a', sha2("a", 256), POINT(1, 1), md5("a"));
+# INSERT INTO usuario (nome, local, user, senha, location, token) VALUES ('a', 'a', 'a', sha2("a", 256), POINT(1, 1), md5("a"));
 
 # Cadastrar Documento (Usuário) => {atributo: valor}
 
@@ -24,11 +24,11 @@ INSERT INTO documentos_usuario (valor, dado_documento_id, usuario_id) VALUES ('a
 
 # Atualizar Documento
 
-UPDATE documento d SET d.nome = 'a', d.pais = 'a', d.descricao = 'a' WHERE d.id = 1;
+# UPDATE documento d SET d.nome = 'a', d.pais = 'a', d.descricao = 'a' WHERE d.id = 1;
 
 # Atualizar Informação
 
-UPDATE parametro p SET p.titulo = 'a', p.tipo = 'a', p.regex = 'a' WHERE p.id = 1;
+# UPDATE parametro p SET p.titulo = 'a', p.tipo = 'a', p.regex = 'a' WHERE p.id = 1;
 
 # Atualizar Informação (Documento)
 
@@ -36,7 +36,7 @@ UPDATE dados_documento d SET d.label = 'a', d.title = 'a', d.placeholder = 'a', 
 
 # Atualizar Usuário
 
-UPDATE usuario u SET u.nome = 'a', u.local = 'a', u.user = 'a', u.senha = sha2("a", 256), u.location = POINT(1, 1), u.token = md5("5566") WHERE u.id = 1;
+# UPDATE usuario u SET u.nome = 'a', u.local = 'a', u.user = 'a', u.senha = sha2("a", 256), u.location = POINT(1, 1), u.token = md5("5566") WHERE u.id = 1;
 
 # Atualizar Documento (Usuário) => {atributo: valor}
 
@@ -46,11 +46,11 @@ UPDATE documentos_usuario d SET d.valor = 'a', d.dado_documento_id = 1, d.usuari
 
 # Excluir Documento
 
-DELETE FROM documento WHERE id = 1;
+# DELETE FROM documento WHERE id = 1;
 
 # Excluir Informação
 
-DELETE FROM parametro WHERE id = 1;
+# DELETE FROM parametro WHERE id = 1;
 
 # Excluir Informação (Documento)
 
@@ -58,7 +58,7 @@ DELETE FROM dados_documento WHERE id = 1;
 
 # Excluir Usuário
 
-DELETE FROM usuario WHERE id = 1;
+# DELETE FROM usuario WHERE id = 1;
 
 # Excluir Documento (Usuário) => {atributo: valor}
 
@@ -68,11 +68,11 @@ DELETE FROM documentos_usuario WHERE id = 1;
 
 # Listar Documentos
 
-SELECT d.id, d.nome, d.pais, d.descricao FROM documento d ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT d.id, d.nome, d.pais, d.descricao FROM documento d ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar Informações
 
-SELECT p.id, p.titulo, p.tipo, p.regex FROM parametro p ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT p.id, p.titulo, p.tipo, p.regex FROM parametro p ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar Informações (Documento)
 
@@ -80,11 +80,33 @@ SELECT d.id, d.label, d.title, d.placeholder, d.parametro_id, d.documento_id FRO
 
 # Listar Usuários
 
-SELECT u.id, u.nome, u.local, u.user, u.senha, u.location, u.token FROM usuario u ORDER BY u.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT u.id, u.nome, u.local, u.user, u.senha, u.location, u.token FROM usuario u ORDER BY u.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar Documento (Usuário) => {atributo: valor}
 
 SELECT d.id, d.valor, d.dado_documento_id, d.usuario_id FROM documentos_usuario d ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+
+
+
+# Buscar Documento
+
+# SELECT DISTINCT(d.id), d.nome, d.pais, d.descricao FROM documento d WHERE d.nome LIKE '%a%' OR d.pais LIKE '%a%' OR d.descricao LIKE '%a%' ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+
+# Buscar Informação
+
+# SELECT DISTINCT(p.id), p.titulo, p.tipo, p.regex FROM parametro p WHERE p.titulo LIKE '%a%' OR p.tipo LIKE '%a%' ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+
+# Buscar Informação (Documento)
+
+SELECT DISTINCT(d.id), d.label, d.title, d.placeholder, d.parametro_id, d.documento_id FROM dados_documento d WHERE d.label LIKE '%a%' OR d.title LIKE '%a%' OR d.placeholder LIKE '%a%' ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+
+# Buscar Usuário
+
+# SELECT DISTINCT(u.id), u.nome, u.local, u.user, u.senha, u.location, u.token FROM usuario u WHERE u.nome LIKE '%a%' OR u.local LIKE '%a%' OR u.user LIKE '%a%' ORDER BY u.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+
+# Buscar Documento (Usuário) => {atributo: valor}
+
+SELECT DISTINCT(d.id), d.valor, d.dado_documento_id, d.usuario_id FROM documentos_usuario d WHERE d.valor LIKE '%a%' ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 
 
@@ -150,25 +172,7 @@ SELECT REPLACE(REPLACE(REPLACE(REPLACE(JSON_ARRAYAGG(JSON_OBJECT(p.titulo, du.va
 
 
 
-# Buscar Documento
 
-SELECT DISTINCT(d.id), d.nome, d.pais, d.descricao FROM documento d WHERE d.nome LIKE '%a%' OR d.pais LIKE '%a%' OR d.descricao LIKE '%a%' ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
-
-# Buscar Informação
-
-SELECT DISTINCT(p.id), p.titulo, p.tipo, p.regex FROM parametro p WHERE p.titulo LIKE '%a%' OR p.tipo LIKE '%a%' ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
-
-# Buscar Informação (Documento)
-
-SELECT DISTINCT(d.id), d.label, d.title, d.placeholder, d.parametro_id, d.documento_id FROM dados_documento d WHERE d.label LIKE '%a%' OR d.title LIKE '%a%' OR d.placeholder LIKE '%a%' ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
-
-# Buscar Usuário
-
-SELECT DISTINCT(u.id), u.nome, u.local, u.user, u.senha, u.location, u.token FROM usuario u WHERE u.nome LIKE '%a%' OR u.local LIKE '%a%' OR u.user LIKE '%a%' ORDER BY u.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
-
-# Buscar Documento (Usuário) => {atributo: valor}
-
-SELECT DISTINCT(d.id), d.valor, d.dado_documento_id, d.usuario_id FROM documentos_usuario d WHERE d.valor LIKE '%a%' ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 
 

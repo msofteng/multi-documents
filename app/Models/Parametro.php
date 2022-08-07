@@ -4,27 +4,29 @@ namespace App\Models;
 
 class Parametro
 {
-    private $titulo;
-    private $valor;
+    public $id;
+    public $titulo;
+    public $tipo;
+    public $regex;
+    public $valor; // null
 
-    public function __construct(string $titulo = null, string $valor = null) {
+    public function __construct(string $id = null, string $titulo = null, string $tipo = null, string $regex = null, string $valor = null) {
+        $this->id = $id;
         $this->titulo = $titulo;
+        $this->tipo = $tipo;
+        $this->regex = $regex;
         $this->valor = $valor;
     }
 
-	public function getTitulo(): string {
-		return $this->titulo;
-	}
-
-	public function setTitulo(string $titulo): void {
-		$this->titulo = $titulo;
-	}
-
-	public function getValor(): string {
-		return $this->valor;
-	}
-
-	public function setValor(string $valor): void {
-		$this->valor = $valor;
+    public function toString(): string {
+		return '
+            {
+                "id": ' . $this->id . ',
+                "titulo": "' . $this->titulo . '",
+                "tipo": "' . $this->tipo . '",
+                "regex": "' . $this->regex . '",
+                "valor": "' . $this->regex . '"
+            }
+        ';
 	}
 }

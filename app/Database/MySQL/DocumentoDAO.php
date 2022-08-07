@@ -47,7 +47,7 @@ class DocumentoDAO implements DAO
             [$id]
         );
 
-        return (!empty($res)) ? new Documento($res->id, $res->nome, $res->pais, $res->descricao, array()) : null;
+        return (!empty($res)) ? new Documento($res->id, $res->nome, $res->pais, $res->descricao) : null;
 	}
 
     // @Override
@@ -59,7 +59,7 @@ class DocumentoDAO implements DAO
 
         if (!empty($res)) {
             foreach ($res as $documento) {
-                array_push($docs, new Documento($documento->id, $documento->nome, $documento->pais, $documento->descricao, array()));
+                array_push($docs, new Documento($documento->id, $documento->nome, $documento->pais, $documento->descricao));
             }
         }
 
@@ -80,7 +80,7 @@ class DocumentoDAO implements DAO
 
         if (!empty($res)) {
             foreach ($res as $documento) {
-                array_push($docs, new Documento($documento->id, $documento->nome, $documento->pais, $documento->descricao, array()));
+                array_push($docs, new Documento($documento->id, $documento->nome, $documento->pais, $documento->descricao));
             }
         }
 

@@ -1,48 +1,109 @@
 <?php
 
-namespace App\Models;
+namespace App\Database\MySQL;
 
-use App\Database\MySQL\DAO;
+use App\Database\DAO;
+use App\Models\Parametro;
+use Illuminate\Support\Facades\DB;
 
 class ParametroDAO implements DAO
 {
 	// @Override
-    public static function insert(object $json): int {
-        return "";
+    public function insert(object $parametro): int {
+        $id = DB::connection("multi-documents")->table("parametro")->insertGetId(
+            [
+                "titulo" => $parametro->titulo,
+                "tipo" => $parametro->titulo,
+                "regex" => $parametro->regex
+            ]
+        );
+
+        return $id;
     }
 
     // @Override
-    public static function update(object $json): string {
-        return "";
+    /** @param Usuario */
+    public function change(object $parametro): bool {
+        return DB::connection("multi-documents")->update(
+            "UPDATE parametro p SET p.titulo = ?, p.tipo = ?, p.regex = ? WHERE p.id = ?",
+            [
+                $parametro->titulo,
+                $parametro->titulo,
+                $parametro->regex,
+                $parametro->id
+            ]
+        );
+	}
+    // @Override
+    public function delete(int $id): int {
+        return DB::connection("multi-documents")->delete("DELETE FROM parametro WHERE id = ?", [$id]);
 	}
 
     // @Override
-    public static function delete(int $id): string {
-        return "";
+    public function get(int $id): Parametro | null {
+        $res = DB::connection("multi-documents")->selectOne(
+            "SELECT p.id, p.titulo, p.tipo, p.regex FROM parametro p WHERE p.id = ?",
+            [$id]
+        );
+
+        return (!empty($res)) ? new Parametro($res->id, $res->titulo, $res->tipo, $res->regex) : null;
 	}
 
     // @Override
-    public static function get(int $id): object {
-        return json_decode("");
+    public function list(string $coluna = null, string $ordem = null, int $limit = null, int $offset = null): array | null {
+        $parameters = array();
+        $res = DB::connection("multi-documents")->select(
+            "SELECT DISTINCT(p.id), p.titulo, p.tipo, p.regex FROM parametro p " . ((!empty($coluna) && !empty($ordem)) ? "ORDER BY p." . $coluna . " " . $ordem : "") . (($limit != null && $limit > 0) ? " LIMIT " . (int) $offset . ", " . $limit : "")
+        );
+
+        if (!empty($res)) {
+            foreach ($res as $parametro) {
+                array_push($parameters, new Parametro($parametro->id, $parametro->titulo, $parametro->tipo, $parametro->regex));
+            }
+        }
+
+        return $parameters;
 	}
 
     // @Override
-    public static function list(string $coluna, string $ordem, int $limit, int $offset): array {
-        return array();
+    public function find(string $q, string $coluna = null, string $ordem = null, int $limit = null, int $offset = null): array | null {
+        $parameters = array();
+        $res = DB::connection("multi-documents")->select(
+            "SELECT DISTINCT(p.id), p.titulo, p.tipo, p.regex FROM parametro p WHERE p.titulo LIKE ? OR p.tipo LIKE ? " . ((!empty($coluna) && !empty($ordem)) ? "ORDER BY u." . $coluna . " " . $ordem : "") . (($limit != null && $limit > 0) ? " LIMIT " . (int) $offset . ", " . $limit : ""),
+            [
+                "%" . $q . "%",
+                "%" . $q . "%"
+            ]
+        );
+
+        if (!empty($res)) {
+            foreach ($res as $parametro) {
+                array_push($parameters, new Parametro($parametro->id, $parametro->titulo, $parametro->tipo, $parametro->regex));
+            }
+        }
+
+        return $parameters;
 	}
 
     // @Override
-    public static function find(string $q, string $coluna, string $ordem, int $limit, int $offset): array {
-        return array();
+    public function count(): int {
+        $res = DB::connection("multi-documents")->selectOne(
+            "SELECT COUNT(p.id) AS qtd FROM parametro p"
+        );
+
+        return $res->qtd;
 	}
 
     // @Override
-    public static function count(string $coluna, string $ordem): int {
-        return 1;
-	}
+    public function countFind(string $q): int {
+        $res = DB::connection("multi-documents")->selectOne(
+            "SELECT COUNT(DISTINCT(p.id)) AS qtd FROM parametro p WHERE p.titulo LIKE ? OR p.tipo LIKE ?",
+            [
+                "%" . $q . "%",
+                "%" . $q . "%"
+            ]
+        );
 
-    // @Override
-    public static function countFind(string $q, string $coluna, string $ordem): int {
-        return 1;
+        return $res->qtd;
 	}
 }
