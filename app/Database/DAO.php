@@ -1,9 +1,6 @@
 <?php
 
-namespace App\Database\MySQL;
-
-use App\Models\Usuario;
-use App\Models\Documento;
+namespace App\Database;
 
 interface DAO
 {
@@ -15,15 +12,7 @@ interface DAO
 
     public function get(int $id): object | null;
 
-    /**
-     * @return Usuario[]
-     */
-
     public function list(string $coluna = null, string $ordem = null, int $limit = null, int $offset = null): array | null;
-
-    /**
-     * @return Usuario[]
-     */
 
     public function find(string $q, string $coluna = null, string $ordem = null, int $limit = null, int $offset = null): array | null;
 

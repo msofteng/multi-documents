@@ -2,7 +2,7 @@
 
 namespace App\Database\MySQL;
 
-use App\Database\MySQL\DAO;
+use App\Database\DAO;
 use App\Models\Usuario;
 use App\Models\Local;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +12,6 @@ class UsuarioDAO implements DAO
 	// @Override
     /** @param Usuario */
     public function insert(object $usuario): int {
-
         $id = DB::connection("multi-documents")->table("usuario")->insertGetId(
             [
                 "nome" => $usuario->nome,
@@ -99,7 +98,6 @@ class UsuarioDAO implements DAO
 
     // @Override
     public function count(): int {
-        $users = array();
         $res = DB::connection("multi-documents")->selectOne(
             "SELECT COUNT(u.id) AS qtd FROM usuario u"
         );
@@ -109,7 +107,6 @@ class UsuarioDAO implements DAO
 
     // @Override
     public function countFind(string $q): int {
-        $users = array();
         $res = DB::connection("multi-documents")->selectOne(
             "SELECT COUNT(DISTINCT(u.id)) AS qtd FROM usuario u WHERE u.nome LIKE ? OR u.local LIKE ? OR u.user LIKE ?",
             [

@@ -44,7 +44,7 @@ class UsuarioService implements Service {
 
     public function findAll(Request $request): array | null {
         $data = $request->all();
-        return $this->usuarioDao->find($data["q"], (isset($data["coluna"])) ? $data["coluna"] : "id", $data["ordem"], $data["limit"], $data["offset"]);
+        return $this->usuarioDao->find($data["q"], (isset($data["coluna"])) ? $data["coluna"] : null, (isset($data["ordem"])) ? $data["ordem"] : null, (isset($data["limit"])) ? $data["limit"] : null, (isset($data["offset"])) ? $data["offset"] : null);
     }
 
     public function countRows(): int {
