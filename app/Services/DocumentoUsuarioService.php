@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Database\DAO\MySQL\DocumentoUsuarioDAO;
+use App\Database\DAO\MySQL\DAOUtil;
+use Exception;
 use App\Services\Service;
 
 use Illuminate\Http\Request;
@@ -17,7 +19,13 @@ class DocumentoUsuarioService implements Service {
 
     public function create(Request $request): int {
         $data = $request->all();
-        return $this->documentoUsuarioDao->insert(json_decode(json_encode($data)));
+        $exists = DAOUtil::isData($data["dado_documento_id"], $data["usuario_id"]);
+
+        if (!$exists) {
+            return $this->documentoUsuarioDao->insert(json_decode(json_encode($data)));
+        } else {
+            throw new Exception("A informação do usuário já foi cadastrada", 1062);
+        }
     }
 
     public function update(Request $request): bool {

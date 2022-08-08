@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Database\DAO\MySQL\DadoDocumentoDAO;
 use App\Database\DAO\MySQL\DocumentoDAO;
 use App\Database\DAO\MySQL\DocumentoUsuarioDAO;
+use App\Database\DAO\MySQL\DAOUtil;
+use Exception;
 use App\Models\Documento;
 use App\Services\Service;
 
@@ -20,7 +22,13 @@ class DocumentoService implements Service {
 
     public function create(Request $request): int {
         $data = $request->all();
-        return $this->documentoDao->insert(new Documento(null, $data["nome"], $data["pais"], $data["descricao"]));
+        $exists = DAOUtil::isDocumento($data["nome"], $data["pais"]);
+
+        if (!$exists) {
+            return $this->documentoDao->insert(new Documento(null, $data["nome"], $data["pais"], $data["descricao"]));
+        } else {
+            throw new Exception("O documento já foi cadastrado", 1062);
+        }
     }
 
     public function update(Request $request): bool {

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Database\DAO\MySQL\ParametroDAO;
 use App\Database\DAO\MySQL\DadoDocumentoDAO;
 use App\Database\DAO\MySQL\DocumentoUsuarioDAO;
+use App\Database\DAO\MySQL\DAOUtil;
 use App\Models\Parametro;
 use App\Services\Service;
 use Exception;
@@ -20,7 +21,13 @@ class ParametroService implements Service {
 
     public function create(Request $request): int {
         $data = $request->all();
-        return $this->parametroDao->insert(new Parametro(null, $data["titulo"], $data["tipo"], $data["regex"]));
+        $exists = DAOUtil::isUsuario($data["user"]);
+
+        if (!$exists) {
+            return $this->parametroDao->insert(new Parametro(null, $data["titulo"], $data["tipo"], $data["regex"]));
+        } else {
+            throw new Exception("O parâmetro já foi cadastrado", 1062);
+        }
     }
 
     public function update(Request $request): bool {

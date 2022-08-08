@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Database\DAO\MySQL\DadoDocumentoDAO;
+use App\Database\DAO\MySQL\DAOUtil;
+use Exception;
 use App\Services\Service;
 
 use Illuminate\Http\Request;
@@ -17,7 +19,13 @@ class DadoDocumentoService implements Service {
 
     public function create(Request $request): int {
         $data = $request->all();
-        return $this->dadoDocumentoDao->insert(json_decode(json_encode($data)));
+        $exists = DAOUtil::isInfo($data["label"], $data["parametro_id"], $data["documento_id"]);
+
+        if (!$exists) {
+            return $this->dadoDocumentoDao->insert(json_decode(json_encode($data)));
+        } else {
+            throw new Exception("A informação já foi cadastrada", 1062);
+        }
     }
 
     public function update(Request $request): bool {

@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use App\Database\DAO\MySQL\DAOUtil;
 use App\Database\DAO\MySQL\DocumentoUsuarioDAO;
 use App\Database\DAO\MySQL\UsuarioDAO;
 use App\Models\Local;
 use App\Models\Usuario;
 use App\Services\Service;
-
+use Exception;
 use Illuminate\Http\Request;
 
 class UsuarioService implements Service {
@@ -20,7 +21,13 @@ class UsuarioService implements Service {
 
     public function create(Request $request): int {
         $data = $request->all();
-        return $this->usuarioDao->insert(new Usuario(null, $data["nome"], $data["user"], $data["senha"], new Local($data["local"]["nome"], $data["local"]["localizacao"]["latitude"], $data["local"]["localizacao"]["longitude"]), $data["token"]));
+        $exists = DAOUtil::isUsuario($data["user"]);
+
+        if (!$exists) {
+            return $this->usuarioDao->insert(new Usuario(null, $data["nome"], $data["user"], $data["senha"], new Local($data["local"]["nome"], $data["local"]["localizacao"]["latitude"], $data["local"]["localizacao"]["longitude"]), $data["token"]));
+        } else {
+            throw new Exception("O usuário já foi cadastrado", 1062);
+        }
     }
 
     public function update(Request $request): bool {
