@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Database\MySQL\ParametroDAO;
+use App\Database\MySQL\DAO\ParametroDAO;
 use App\Models\Parametro;
 use App\Services\Service;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database\MySQL;
+namespace App\Database\MySQL\DAO;
 
 use App\Database\DAO;
 use App\Models\Parametro;
@@ -22,7 +22,6 @@ class ParametroDAO implements DAO
     }
 
     // @Override
-    /** @param Usuario */
     public function change(object $parametro): bool {
         return DB::connection("multi-documents")->update(
             "UPDATE parametro p SET p.titulo = ?, p.tipo = ?, p.regex = ? WHERE p.id = ?",
@@ -34,6 +33,7 @@ class ParametroDAO implements DAO
             ]
         );
 	}
+
     // @Override
     public function delete(int $id): int {
         return DB::connection("multi-documents")->delete("DELETE FROM parametro WHERE id = ?", [$id]);
@@ -69,7 +69,7 @@ class ParametroDAO implements DAO
     public function find(string $q, string $coluna = null, string $ordem = null, int $limit = null, int $offset = null): array | null {
         $parameters = array();
         $res = DB::connection("multi-documents")->select(
-            "SELECT DISTINCT(p.id), p.titulo, p.tipo, p.regex FROM parametro p WHERE p.titulo LIKE ? OR p.tipo LIKE ? " . ((!empty($coluna) && !empty($ordem)) ? "ORDER BY u." . $coluna . " " . $ordem : "") . (($limit != null && $limit > 0) ? " LIMIT " . (int) $offset . ", " . $limit : ""),
+            "SELECT DISTINCT(p.id), p.titulo, p.tipo, p.regex FROM parametro p WHERE p.titulo LIKE ? OR p.tipo LIKE ? " . ((!empty($coluna) && !empty($ordem)) ? "ORDER BY p." . $coluna . " " . $ordem : "") . (($limit != null && $limit > 0) ? " LIMIT " . (int) $offset . ", " . $limit : ""),
             [
                 "%" . $q . "%",
                 "%" . $q . "%"

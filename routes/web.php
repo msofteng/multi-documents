@@ -189,17 +189,17 @@ Route::delete("/api/documento/dados/excluir", function (Request $request) {
 
 Route::get("/api/documento/dado", function (Request $request) {
     $parametro = (new DadoDocumentoService())->get($request);
-    return (!empty($parametro)) ? response($parametro->toString(), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "A informação do documento não foi encontrada"], 500, ["Content-Type" => "application/json"]);
+    return (!empty($parametro)) ? response(json_encode($parametro), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "A informação do documento não foi encontrada"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/documento/dados", function (Request $request) {
     $parametros = (new DadoDocumentoService())->listAll($request);
-    return (!empty($parametros)) ? response($parametros, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do documento não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
+    return (!empty($parametros)) ? response(json_encode($parametros), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do documento não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/documento/dados/buscar", function (Request $request) {
     $parametros = (new DadoDocumentoService())->findAll($request);
-    return (!empty($parametros)) ? response($parametros, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do documento não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
+    return (!empty($parametros)) ? response(json_encode($parametros), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do documento não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/documento/dados/total", function (Request $request) {
@@ -231,18 +231,18 @@ Route::delete("/api/usuario/documentos/excluir", function (Request $request) {
 });
 
 Route::get("/api/usuario/documento", function (Request $request) {
-    $parametro = (new DocumentoUsuarioService())->get($request);
-    return (!empty($parametro)) ? response($parametro->toString(), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "A informação do usuário não foi encontrada"], 500, ["Content-Type" => "application/json"]);
+    $dado = (new DocumentoUsuarioService())->get($request);
+    return (!empty($dado)) ? response(json_encode($dado), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "A informação do usuário não foi encontrada"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/usuario/documentos", function (Request $request) {
-    $parametros = (new DocumentoUsuarioService())->listAll($request);
-    return (!empty($parametros)) ? response($parametros, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do usuário não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
+    $dados = (new DocumentoUsuarioService())->listAll($request);
+    return (!empty($dados)) ? response(json_encode($dados), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do usuário não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/usuario/documentos/buscar", function (Request $request) {
-    $parametros = (new DocumentoUsuarioService())->findAll($request);
-    return (!empty($parametros)) ? response($parametros, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do usuário não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
+    $dados = (new DocumentoUsuarioService())->findAll($request);
+    return (!empty($dados)) ? response(json_encode($dados), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do usuário não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/usuario/documentos/total", function (Request $request) {

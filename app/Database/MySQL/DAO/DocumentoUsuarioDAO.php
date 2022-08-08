@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database\MySQL;
+namespace App\Database\MySQL\DAO;
 
 use App\Database\DAO;
 use Illuminate\Support\Facades\DB;

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Database\MySQL\DocumentoUsuarioDAO;
+use App\Database\MySQL\DAO\DocumentoUsuarioDAO;
 use App\Services\Service;
 
 use Illuminate\Http\Request;

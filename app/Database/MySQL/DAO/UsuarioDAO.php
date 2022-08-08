@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database\MySQL;
+namespace App\Database\MySQL\DAO;
 
 use App\Database\DAO;
 use App\Models\Usuario;
@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 class UsuarioDAO implements DAO
 {
 	// @Override
-    /** @param Usuario */
     public function insert(object $usuario): int {
         $id = DB::connection("multi-documents")->table("usuario")->insertGetId(
             [
@@ -27,7 +26,6 @@ class UsuarioDAO implements DAO
     }
 
     // @Override
-    /** @param Usuario */
     public function change(object $usuario): bool {
         return DB::connection("multi-documents")->update(
             "UPDATE usuario u SET u.nome = ?, u.local = ?, u.user = ?, u.senha = sha2(?, 256), u.location = POINT(?, ?), u.token = md5(?) WHERE u.id = ?",

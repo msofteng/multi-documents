@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database\MySQL;
+namespace App\Database\MySQL\DAO;
 
 use App\Database\DAO;
 use App\Models\Documento;
@@ -100,7 +100,7 @@ class DocumentoDAO implements DAO
     // @Override
     public function countFind(string $q): int {
         $res = DB::connection("multi-documents")->selectOne(
-            "SELECT COUNT(DISTINCT(d.id)) FROM documento d WHERE d.nome LIKE ? OR d.pais LIKE ? OR d.descricao LIKE ?",
+            "SELECT COUNT(DISTINCT(d.id)) AS qtd FROM documento d WHERE d.nome LIKE ? OR d.pais LIKE ? OR d.descricao LIKE ?",
             [
                 "%" . $q . "%",
                 "%" . $q . "%",
