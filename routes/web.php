@@ -24,6 +24,22 @@ Route::get("/", function () {
 });
 
 
+/*
+    # # # Rotas do CRUD (REST) # # #
+
+    estes endpoints foram pensados na possibilidade de construir uma SPA que irá
+    trabalhar com Angular, React ou até mesmo com algum framework JavaScript avançado
+    utilizando bibliotecas jQuery onde várias requisições assíncronas serão chamadas
+    conforme os usuários (administradores) forem inserindo os dados
+
+    Validação: no Postman seria muito trabalhoso tratar o payload JSON para verificar
+    se todos os atributos estão inseridos nele, portanto na documentação irei mostrar o
+    payload que cada rota deverá possuir para a requisição ser efetuada com sucesso
+
+    Também na documentação se der tempo irei especificar quais atributos devem ou
+    não serem preenchidos
+*/
+
 // rotas (usuário)
 
 Route::post("/api/usuario/salvar", function (Request $request) {
@@ -243,3 +259,16 @@ Route::get("/api/usuario/documentos/buscar/total", function (Request $request) {
 Route::get("/home", function () {
     return view("index");
 });
+
+
+
+/*
+    # # # Rotas Avançadas (REST) # # #
+
+    modelos de como estas requisições serão construídas e persistidas na base de dados
+    está localizada em: ./public/json
+
+    irá fazer acesso com um super serviço (Analytics) que irá modelar os exemplos contidos na
+    pasta ./public/json e consumir todos os outros serviços da API para
+    persistir todos os dados em apenas uma única rota
+*/

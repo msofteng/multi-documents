@@ -112,15 +112,15 @@ USE `multi-documents`;
 
 # Listar Informação (Documento) [por parâmetro]
 
-SELECT d.id, d.label, d.title, d.placeholder, p.titulo FROM dados_documento d, parametro p WHERE d.parametro_id = p.id AND p.id = 6 ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT d.id, d.label, d.title, d.placeholder, p.titulo FROM dados_documento d, parametro p WHERE d.parametro_id = p.id AND p.id = 6 ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar Informação (Documento) [por documento]
 
-SELECT d.id, d.label, d.title, d.placeholder, doc.nome FROM dados_documento d, documento doc WHERE d.documento_id = doc.id AND doc.id = 1 ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT d.id, d.label, d.title, d.placeholder, doc.nome FROM dados_documento d, documento doc WHERE d.documento_id = doc.id AND doc.id = 1 ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar Documento (Usuário) => {atributo: valor} [por informação do documento]
 
-SELECT d.id, dd.label, d.valor FROM documentos_usuario d, dados_documento dd WHERE d.dado_documento_id = dd.id AND dd.id = 4 ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT d.id, dd.label, d.valor FROM documentos_usuario d, dados_documento dd WHERE d.dado_documento_id = dd.id AND dd.id = 4 ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar Documento (Usuário) => {atributo: valor} [por usuário]
 
@@ -153,11 +153,11 @@ SELECT DISTINCT(doc.id), doc.nome FROM usuario u, documentos_usuario du, dados_d
 
 SELECT p.titulo, du.valor FROM usuario u, documentos_usuario du, dados_documento dd, documento doc, parametro p WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1 ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
-
+SELECT * FROM usuario;
 
 # Listar todas as informações do usuário [JSON] (sem documentos)
 
-SELECT JSON_OBJECT('id', u.id, 'nome', u.nome, 'user', u.user, 'local', JSON_OBJECT('nome', u.nome, 'localizacao', JSON_OBJECT('latitude', ST_X(u.location), 'longitude', ST_Y(u.location)))) FROM usuario u WHERE u.id = 1;
+SELECT JSON_OBJECT('id', u.id, 'nome', u.nome, 'user', u.user, 'local', JSON_OBJECT('nome', u.local, 'localizacao', JSON_OBJECT('latitude', ST_X(u.location), 'longitude', ST_Y(u.location)))) AS json FROM usuario u WHERE u.id = 1;
 
 
 
