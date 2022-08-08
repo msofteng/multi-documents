@@ -35,6 +35,10 @@ class DocumentoUsuarioService implements Service {
         return $this->documentoUsuarioDao->get((isset($data["id"]) && !empty($data["id"])) ? $data["id"] : 0);
     }
 
+    public function data(int $id): object | null {
+        return $this->documentoUsuarioDao->get($id);
+    }
+
     public function listAll(Request $request): array | null {
         $data = $request->all();
         return $this->documentoUsuarioDao->list((isset($data["coluna"])) ? $data["coluna"] : null, (isset($data["ordem"])) ? $data["ordem"] : null, (isset($data["limit"])) ? $data["limit"] : null, (isset($data["offset"])) ? $data["offset"] : null);

@@ -39,7 +39,7 @@ class UsuarioService implements Service {
         return $this->usuarioDao->get((isset($data["id"]) && !empty($data["id"])) ? $data["id"] : 0);
     }
 
-    public function user($id): Usuario {
+    public function user($id): Usuario | null {
         return $this->usuarioDao->get($id);
     }
 

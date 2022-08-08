@@ -21,9 +21,9 @@ http://localhost/api/usuario/login [POST] atualizar TOKEN cada vez que o usuári
 <!-- http://localhost/api/documentos/total [GET] Listar Documentos (Total) {OK} -->
 <!-- http://localhost/api/documentos/buscar/total [GET] Buscar Documentos (Total) {OK} -->
 
-http://localhost/api/parametro/salvar [POST]
-http://localhost/api/parametro/atualizar [PUT]
-http://localhost/api/parametro/excluir [DELETE]
+<!-- http://localhost/api/parametro/salvar [POST] -->
+<!-- http://localhost/api/parametro/atualizar [PUT] -->
+<!-- http://localhost/api/parametro/excluir [DELETE] -->
 
 <!-- http://localhost/api/parametro [GET] Listar Parâmetro {OK} -->
 <!-- http://localhost/api/parametros [GET] Listar Parâmetros {OK} -->
@@ -31,9 +31,9 @@ http://localhost/api/parametro/excluir [DELETE]
 <!-- http://localhost/api/parametros/total [GET] Listar Parâmetros (Total) {OK} -->
 <!-- http://localhost/api/parametros/buscar/total [GET] Buscar Parâmetros (Total) {OK} -->
 
-http://localhost/api/documento/dados/adicionar [POST]
-http://localhost/api/documento/dados/atualizar [PUT]
-http://localhost/api/documento/dados/excluir [DELETE]
+<!-- http://localhost/api/documento/dados/adicionar [POST] -->
+<!-- http://localhost/api/documento/dados/atualizar [PUT] -->
+<!-- http://localhost/api/documento/dados/excluir [DELETE] -->
 
 <!-- http://localhost/api/documento/dado [GET] Listar Informação {OK} -->
 <!-- http://localhost/api/documento/dados [GET] Listar Informações {OK} -->
@@ -41,9 +41,9 @@ http://localhost/api/documento/dados/excluir [DELETE]
 <!-- http://localhost/api/documento/dados/total [GET] Listar Informações (Total) {OK} -->
 <!-- http://localhost/api/documento/dados/buscar/total [GET] Buscar Informações (Total) {OK} -->
 
-http://localhost/api/usuario/documentos/salvar [POST]
-http://localhost/api/usuario/documentos/atualizar [PUT]
-http://localhost/api/usuario/documentos/excluir [DELETE]
+<!-- http://localhost/api/usuario/documentos/adicionar [POST] -->
+<!-- http://localhost/api/usuario/documentos/atualizar [PUT] -->
+<!-- http://localhost/api/usuario/documentos/excluir [DELETE] -->
 
 <!-- http://localhost/api/usuario/documento [GET] Listar Dado {OK} -->
 <!-- http://localhost/api/usuario/documentos [GET] Listar Dados {OK} -->
@@ -61,7 +61,7 @@ http://localhost/analytics/usuario/ [POST]
 http://localhost/analytics/usuario/simple [POST]
 http://localhost/analytics/usuario/documentos [POST]
 
--- ROTAS PARA VALIDAÇÃO DE REGISTROS (verificar se já existem)
+-- ROTAS PARA VALIDAÇÃO DE REGISTROS (verificar se já existem) DAOUtil
 
 ✓ o objetivo é proteger todas as rotas com o TOKEN do usuário, exceto a de login
 ✓ a cada login o TOKEN do usuário é atualizado, portanto não terá fraudes

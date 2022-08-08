@@ -18,6 +18,15 @@ class VerifyCsrfToken extends Middleware
         "api/usuario/excluir",
         "api/documento/salvar",
         "api/documento/atualizar",
-        "api/documento/excluir"
+        "api/documento/excluir",
+        "api/parametro/salvar",
+        "api/parametro/atualizar",
+        "api/parametro/excluir",
+        "/api/documento/dados/adicionar",
+        "/api/documento/dados/atualizar",
+        "/api/documento/dados/excluir",
+        "/api/usuario/documentos/adicionar",
+        "/api/usuario/documentos/atualizar",
+        "/api/usuario/documentos/excluir",
     ];
 }

@@ -27,7 +27,7 @@ class ParametroDAO implements DAO
             "UPDATE parametro p SET p.titulo = ?, p.tipo = ?, p.regex = ? WHERE p.id = ?",
             [
                 $parametro->titulo,
-                $parametro->titulo,
+                $parametro->tipo,
                 $parametro->regex,
                 $parametro->id
             ]

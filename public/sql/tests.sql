@@ -147,13 +147,11 @@ SELECT JSON_ARRAYAGG(JSON_OBJECT('parametro', p.titulo, 'tipo', p.tipo, 'regex',
 
 # Listar todos os documentos do usuário [apenas ID]
 
-SELECT DISTINCT(doc.id), doc.nome FROM usuario u, documentos_usuario du, dados_documento dd, documento doc WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND u.id = 1 ORDER BY doc.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT DISTINCT(doc.id), doc.nome FROM usuario u, documentos_usuario du, dados_documento dd, documento doc WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND u.id = 1 ORDER BY doc.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar todas as informações do usuário (por documento)
 
-SELECT p.titulo, du.valor FROM usuario u, documentos_usuario du, dados_documento dd, documento doc, parametro p WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1 ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
-
-SELECT * FROM usuario;
+# SELECT p.titulo, du.valor FROM usuario u, documentos_usuario du, dados_documento dd, documento doc, parametro p WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1 ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar todas as informações do usuário [JSON] (sem documentos)
 
@@ -178,19 +176,19 @@ SELECT REPLACE(REPLACE(REPLACE(REPLACE(JSON_ARRAYAGG(JSON_OBJECT(p.titulo, du.va
 
 # Buscar Informação (Documento) [por parâmetro]
 
-SELECT DISTINCT(d.id), d.label, d.title, d.placeholder, p.titulo FROM dados_documento d, parametro p WHERE (d.parametro_id = p.id AND p.id = 6) AND (d.label LIKE '%a%' OR d.title LIKE '%a%' OR d.placeholder LIKE '%a%') ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT DISTINCT(d.id), d.label, d.title, d.placeholder, p.titulo FROM dados_documento d, parametro p WHERE (d.parametro_id = p.id AND p.id = 6) AND (d.label LIKE '%a%' OR d.title LIKE '%a%' OR d.placeholder LIKE '%a%') ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Buscar Informação (Documento) [por documento]
 
-SELECT DISTINCT(d.id), d.label, d.title, d.placeholder, doc.nome FROM dados_documento d, documento doc WHERE (d.documento_id = doc.id AND doc.id = 1) AND (d.label LIKE '%a%' OR d.title LIKE '%a%' OR d.placeholder LIKE '%a%') ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT DISTINCT(d.id), d.label, d.title, d.placeholder, doc.nome FROM dados_documento d, documento doc WHERE (d.documento_id = doc.id AND doc.id = 1) AND (d.label LIKE '%a%' OR d.title LIKE '%a%' OR d.placeholder LIKE '%a%') ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Buscar Documento (Usuário) => {atributo: valor} [por informação do documento]
 
-SELECT DISTINCT(d.id), dd.label, d.valor FROM documentos_usuario d, dados_documento dd WHERE (d.dado_documento_id = dd.id AND dd.id = 4) AND (d.valor LIKE '%a%') ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT DISTINCT(d.id), dd.label, d.valor FROM documentos_usuario d, dados_documento dd WHERE (d.dado_documento_id = dd.id AND dd.id = 4) AND (d.valor LIKE '%a%') ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Buscar Documento (Usuário) => {atributo: valor} [por usuário]
 
-SELECT DISTINCT(d.id), d.valor, u.user FROM documentos_usuario d, usuario u WHERE (d.usuario_id = u.id AND u.id = 1) AND (d.valor LIKE '%a%') ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT DISTINCT(d.id), d.valor, u.user FROM documentos_usuario d, usuario u WHERE (d.usuario_id = u.id AND u.id = 1) AND (d.valor LIKE '%a%') ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 
 
@@ -198,35 +196,35 @@ SELECT DISTINCT(d.id), d.valor, u.user FROM documentos_usuario d, usuario u WHER
 
 SELECT IF((SELECT u.id FROM usuario u WHERE u.user = "luciano22" AND u.senha = sha2("123", 256)) IS NOT NULL, true, false) AS login;
 
-
+SELECT * FROM usuario;
 
 # Verificar se usuário já existe
 
-SELECT IF((SELECT u.id FROM usuario u WHERE u.user = "luciano22") IS NULL, false, true) AS `exists`;
+SELECT IF((SELECT u.id FROM usuario u WHERE u.user = "mateus22") IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se documento já existe
 
-SELECT IF((SELECT d.id FROM documento d WHERE d.nome = "RG" AND d.pais = "Brasil") IS NULL, false, true) AS `exists`;
+SELECT IF((SELECT d.id FROM documento d WHERE d.nome = "RG" AND d.pais = "Brasil") IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se parâmetro já existe
 
-SELECT IF((SELECT p.id FROM parametro p WHERE p.titulo = "numero_rg" AND p.tipo = "texto") IS NULL, false, true) AS `exists`;
+SELECT IF((SELECT p.id FROM parametro p WHERE p.titulo = "numero_rg" AND p.tipo = "texto") IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se dado já existe (apenas pelo nome)
 
-SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.label = "nome") IS NULL, false, true) AS `exists`;
+SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.label = "nome") IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se dado já existe (apenas pelo parâmetro e documento)
 
-SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.parametro_id = 1 AND dd.documento_id = 1) IS NULL, false, true) AS `exists`;
+SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.parametro_id = 1 AND dd.documento_id = 1) IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se dado já existe (nome, parâmetro e documento)
 
-SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.label = "nome" AND dd.parametro_id = 1 AND dd.documento_id = 1) IS NULL, false, true) AS `exists`;
+SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.label = "nome" AND dd.parametro_id = 1 AND dd.documento_id = 1) IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se informação do documento já existe (pelo parâmetro e documento)
 
-SELECT IF((SELECT du.id FROM documentos_usuario du WHERE du.dado_documento_id = 1 AND du.usuario_id = 1) IS NULL, false, true) AS `exists`;
+SELECT IF((SELECT du.id FROM documentos_usuario du WHERE du.dado_documento_id = 1 AND du.usuario_id = 1) IS NOT NULL, true, false) AS `exists`;
 
 # APAGAR UM DOCUMENTO POR COMPLETO (próxima versão: apagar todos os parâmetros que sejam específicos apenas deste documento)
 
@@ -235,8 +233,6 @@ SELECT IF((SELECT du.id FROM documentos_usuario du WHERE du.dado_documento_id = 
 # DELETE FROM documentos_usuario WHERE dado_documento_id = 1;
 
 # DELETE FROM dados_documento WHERE documento_id = 1;
-
-
 
 # Atualizar TOKEN do usuário
 

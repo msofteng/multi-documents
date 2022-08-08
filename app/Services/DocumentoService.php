@@ -50,7 +50,7 @@ class DocumentoService implements Service {
         return $this->documentoDao->get((isset($data["id"]) && !empty($data["id"])) ? $data["id"] : 0);
     }
 
-    public function document(int $id): object | null {
+    public function document(int $id): Documento | null {
         return $this->documentoDao->get($id);
     }
 

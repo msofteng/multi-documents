@@ -35,6 +35,10 @@ class DadoDocumentoService implements Service {
         return $this->dadoDocumentoDao->get((isset($data["id"]) && !empty($data["id"])) ? $data["id"] : 0);
     }
 
+    public function info(int $id): object | null {
+        return $this->dadoDocumentoDao->get($id);
+    }
+
     public function listAll(Request $request): array | null {
         $data = $request->all();
         return $this->dadoDocumentoDao->list((isset($data["coluna"])) ? $data["coluna"] : null, (isset($data["ordem"])) ? $data["ordem"] : null, (isset($data["limit"])) ? $data["limit"] : null, (isset($data["offset"])) ? $data["offset"] : null);

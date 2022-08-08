@@ -136,8 +136,9 @@ Route::get("/api/documentos/buscar/total", function (Request $request) {
 // rotas (parâmetro)
 
 Route::post("/api/parametro/salvar", function (Request $request) {
-    $id = (new ParametroService())->create($request);
-    return ($id > 0) ? response(["message" => "O parâmetro foi cadastrado com sucesso"], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: O parâmetro não foi cadastrado"], 500, ["Content-Type" => "application/json"]);
+    $service = new ParametroService();
+    $id = $service->create($request);
+    return ($id > 0) ? response(["message" => "O parâmetro foi cadastrado com sucesso", "parametro" => $service->parameter($id)], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: O parâmetro não foi cadastrado"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::put("/api/parametro/atualizar", function (Request $request) {
@@ -179,8 +180,9 @@ Route::get("/api/parametros/buscar/total", function (Request $request) {
 // rotas (dados_documento)
 
 Route::post("/api/documento/dados/adicionar", function (Request $request) {
-    $id = (new DadoDocumentoService())->create($request);
-    return ($id > 0) ? response(["message" => "A informação do documento foi cadastrada com sucesso"], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: A informação do documento não foi cadastrada"], 500, ["Content-Type" => "application/json"]);
+    $service = new DadoDocumentoService();
+    $id = $service->create($request);
+    return ($id > 0) ? response(["message" => "A informação do documento foi cadastrada com sucesso", "informacao" => $service->info($id)], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: A informação do documento não foi cadastrada"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::put("/api/documento/dados/atualizar", function (Request $request) {
@@ -221,9 +223,10 @@ Route::get("/api/documento/dados/buscar/total", function (Request $request) {
 
 // rotas (documentos_usuario)
 
-Route::post("/api/usuario/documentos/salvar", function (Request $request) {
-    $id = (new DocumentoUsuarioService())->create($request);
-    return ($id > 0) ? response(["message" => "A informação do usuário foi inserida no documento"], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: A informação do usuário não foi inserida no documento"], 500, ["Content-Type" => "application/json"]);
+Route::post("/api/usuario/documentos/adicionar", function (Request $request) {
+    $service = new DocumentoUsuarioService();
+    $id = $service->create($request);
+    return ($id > 0) ? response(["message" => "A informação do usuário foi inserida no documento", "informacao" => $service->data($id)], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: A informação do usuário não foi inserida no documento"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::put("/api/usuario/documentos/atualizar", function (Request $request) {
