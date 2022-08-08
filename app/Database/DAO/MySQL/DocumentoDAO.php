@@ -2,7 +2,7 @@
 
 namespace App\Database\MySQL\DAO;
 
-use App\Database\DAO;
+use App\Database\DAO\DAO;
 use App\Models\Documento;
 use Illuminate\Support\Facades\DB;
 

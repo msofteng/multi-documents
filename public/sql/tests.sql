@@ -200,7 +200,7 @@ SELECT * FROM usuario;
 
 # Verificar se usuário já existe
 
-SELECT IF((SELECT u.id FROM usuario u WHERE u.user = "mateus22") IS NOT NULL, true, false) AS `exists`;
+# SELECT IF((SELECT u.id FROM usuario u WHERE u.user = "mateus22") IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se documento já existe
 
@@ -208,7 +208,7 @@ SELECT IF((SELECT d.id FROM documento d WHERE d.nome = "RG" AND d.pais = "Brasil
 
 # Verificar se parâmetro já existe
 
-SELECT IF((SELECT p.id FROM parametro p WHERE p.titulo = "numero_rg" AND p.tipo = "texto") IS NOT NULL, true, false) AS `exists`;
+# SELECT IF((SELECT p.id FROM parametro p WHERE p.titulo = "numero_rg" AND p.tipo = "texto") IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se dado já existe (apenas pelo nome)
 
@@ -220,11 +220,11 @@ SELECT IF((SELECT p.id FROM parametro p WHERE p.titulo = "numero_rg" AND p.tipo 
 
 # Verificar se dado já existe (nome, parâmetro e documento)
 
-SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.label = "nome" AND dd.parametro_id = 1 AND dd.documento_id = 1) IS NOT NULL, true, false) AS `exists`;
+# SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.label = "nome" AND dd.parametro_id = 1 AND dd.documento_id = 1) IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se informação do documento já existe (pelo parâmetro e documento)
 
-SELECT IF((SELECT du.id FROM documentos_usuario du WHERE du.dado_documento_id = 1 AND du.usuario_id = 1) IS NOT NULL, true, false) AS `exists`;
+# SELECT IF((SELECT du.id FROM documentos_usuario du WHERE du.dado_documento_id = 1 AND du.usuario_id = 1) IS NOT NULL, true, false) AS `exists`;
 
 # APAGAR UM DOCUMENTO POR COMPLETO (próxima versão: apagar todos os parâmetros que sejam específicos apenas deste documento)
 
