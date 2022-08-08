@@ -3,11 +3,12 @@ http://localhost/api/usuario/login [POST] atualizar TOKEN cada vez que o usuári
 http://localhost/api/usuario/salvar [POST]
 http://localhost/api/usuario/atualizar [PUT]
 http://localhost/api/usuario/excluir [DELETE]
+
 http://localhost/api/usuario [GET] Listar Usuário {OK}
 http://localhost/api/usuarios [GET] Listar Usuários {OK}
 http://localhost/api/usuarios/buscar [GET] Buscar Usuários {OK}
-http://localhost/api/usuarios/total [GET] Listar Usuários (Total)
-http://localhost/api/usuarios/buscar/total [GET] Buscar Usuários (Total)
+http://localhost/api/usuarios/total [GET] Listar Usuários (Total) {OK}
+http://localhost/api/usuarios/buscar/total [GET] Buscar Usuários (Total) {OK}
 
 http://localhost/api/documento/salvar [POST]
 http://localhost/api/documento/atualizar [PUT]
@@ -58,3 +59,6 @@ http://localhost/analytics/usuario/documentos [POST]
 ✓ a cada login o TOKEN do usuário é atualizado, portanto não terá fraudes
 ✓ cookies e sessões deixo para mais tarde caso este projeto avançe de fase
 ✓ criar uma camada Util para desenvolver métodos auxiliares no código-fonte
+
+
+https://www.postman.com/mssilva4/workspace/multi-documents
