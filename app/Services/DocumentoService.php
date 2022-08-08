@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Database\MySQL\DAO\DadoDocumentoDAO;
-use App\Database\MySQL\DAO\DocumentoDAO;
-use App\Database\MySQL\DAO\DocumentoUsuarioDAO;
+use App\Database\DAO\MySQL\DadoDocumentoDAO;
+use App\Database\DAO\MySQL\DocumentoDAO;
+use App\Database\DAO\MySQL\DocumentoUsuarioDAO;
 use App\Models\Documento;
 use App\Services\Service;
 

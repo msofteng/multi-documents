@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Database\MySQL\DAO\DAOAnalytic;
+use App\Database\DAO\MySQL\DAOAnalytic;
 use Illuminate\Http\Request;
 
 class AnalyticService {

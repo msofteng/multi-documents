@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Database\MySQL\DAO\ParametroDAO;
-use App\Database\MySQL\DAO\DadoDocumentoDAO;
-use App\Database\MySQL\DAO\DocumentoUsuarioDAO;
+use App\Database\DAO\MySQL\ParametroDAO;
+use App\Database\DAO\MySQL\DadoDocumentoDAO;
+use App\Database\DAO\MySQL\DocumentoUsuarioDAO;
 use App\Models\Parametro;
 use App\Services\Service;
 use Exception;

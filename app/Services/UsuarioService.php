@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Database\MySQL\DAO\DocumentoUsuarioDAO;
-use App\Database\MySQL\DAO\UsuarioDAO;
+use App\Database\DAO\MySQL\DocumentoUsuarioDAO;
+use App\Database\DAO\MySQL\UsuarioDAO;
 use App\Models\Local;
 use App\Models\Usuario;
 use App\Services\Service;
