@@ -42,11 +42,24 @@ class DadoDocumentoDAO implements DAO
         return DB::connection("multi-documents")->delete("DELETE FROM dados_documento WHERE id = ?", [$id]);
 	}
 
+    public function deleteAllByDocumentId(int $id): int {
+        return DB::connection("multi-documents")->delete("DELETE FROM dados_documento WHERE documento_id = ?", [$id]);
+	}
+
     // @Override
     public function get(int $id): object | null {
         $res = DB::connection("multi-documents")->selectOne(
             "SELECT d.id, d.label, d.title, d.placeholder, d.parametro_id, d.documento_id FROM dados_documento d WHERE d.id = ?",
             [$id]
+        );
+
+        return (!empty($res)) ? $res : null;
+	}
+
+    public function getAllByDocumentId(int $documentId): array | null {
+        $res = DB::connection("multi-documents")->select(
+            "SELECT d.id, d.label, d.title, d.placeholder, d.parametro_id, d.documento_id FROM dados_documento d WHERE d.documento_id = ?",
+            [$documentId]
         );
 
         return (!empty($res)) ? $res : null;

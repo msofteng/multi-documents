@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Database\MySQL\DAO\DadoDocumentoDAO;
 use App\Database\MySQL\DAO\DocumentoDAO;
+use App\Database\MySQL\DAO\DocumentoUsuarioDAO;
 use App\Models\Documento;
 use App\Services\Service;
 
@@ -28,12 +30,28 @@ class DocumentoService implements Service {
 
     public function delete(Request $request): int {
         $data = $request->all();
+        $dadoDocumentoDao = new DadoDocumentoDAO();
+        $documentoUsuarioDao = new DocumentoUsuarioDAO();
+        $dados = $dadoDocumentoDao->getAllByDocumentId($data["id"]);
+
+        if (!empty($dados)) {
+            foreach ($dados as $dado) {
+                $documentoUsuarioDao->deleteAllByDataId($dado->id);
+            }
+        }
+
+        $dadoDocumentoDao->deleteAllByDocumentId($data["id"]);
+
         return $this->documentoDao->delete($data["id"]);
     }
 
     public function get(Request $request): object | null {
         $data = $request->all();
         return $this->documentoDao->get((isset($data["id"]) && !empty($data["id"])) ? $data["id"] : 0);
+    }
+
+    public function document(int $id): object | null {
+        return $this->documentoDao->get($id);
     }
 
     public function listAll(Request $request): array | null {

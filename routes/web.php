@@ -23,6 +23,10 @@ Route::get("/", function () {
     return view("index");
 });
 
+Route::get("/token", function () {
+    return csrf_token();
+});
+
 
 /*
     # # # Rotas do CRUD (REST) # # #
@@ -43,8 +47,9 @@ Route::get("/", function () {
 // rotas (usuário)
 
 Route::post("/api/usuario/salvar", function (Request $request) {
-    $id = (new UsuarioService())->create($request);
-    return ($id > 0) ? response(["message" => "O usuário foi cadastrado com sucesso"], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: O usuário não foi cadastrado"], 500, ["Content-Type" => "application/json"]);
+    $service = new UsuarioService();
+    $id = $service->create($request);
+    return ($id > 0) ? response(["message" => "O usuário foi cadastrado com sucesso", "usuario" => $service->user($id)], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: O usuário não foi cadastrado"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::put("/api/usuario/atualizar", function (Request $request) {
@@ -86,8 +91,9 @@ Route::get("/api/usuarios/buscar/total", function (Request $request) {
 // rotas (documento)
 
 Route::post("/api/documento/salvar", function (Request $request) {
-    $id = (new DocumentoService())->create($request);
-    return ($id > 0) ? response(["message" => "O documento foi cadastrado com sucesso"], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: O documento não foi cadastrado"], 500, ["Content-Type" => "application/json"]);
+    $service = new DocumentoService();
+    $id = $service->create($request);
+    return ($id > 0) ? response(["message" => "O documento foi cadastrado com sucesso", "documento" => $service->document($id)], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: O documento não foi cadastrado"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::put("/api/documento/atualizar", function (Request $request) {

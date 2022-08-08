@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Database\MySQL\DAO\DocumentoUsuarioDAO;
 use App\Database\MySQL\DAO\UsuarioDAO;
 use App\Models\Local;
 use App\Models\Usuario;
@@ -19,22 +20,27 @@ class UsuarioService implements Service {
 
     public function create(Request $request): int {
         $data = $request->all();
-        return $this->usuarioDao->insert(new Usuario(null, $data["nome"], $data["user"], $data["senha"], new Local($data["local"]["nome"], $data["local"]["latitude"], $data["local"]["longitude"]), $data["token"]));
+        return $this->usuarioDao->insert(new Usuario(null, $data["nome"], $data["user"], $data["senha"], new Local($data["local"]["nome"], $data["local"]["localizacao"]["latitude"], $data["local"]["localizacao"]["longitude"]), $data["token"]));
     }
 
     public function update(Request $request): bool {
         $data = $request->all();
-        return $this->usuarioDao->change(new Usuario($data["id"], $data["nome"], $data["user"], $data["senha"], new Local($data["local"]["nome"], $data["local"]["latitude"], $data["local"]["longitude"]), $data["token"]));
+        return $this->usuarioDao->change(new Usuario($data["id"], $data["nome"], $data["user"], $data["senha"], new Local($data["local"]["nome"], $data["local"]["localizacao"]["latitude"], $data["local"]["localizacao"]["longitude"]), $data["token"]));
     }
 
     public function delete(Request $request): int {
         $data = $request->all();
+        (new DocumentoUsuarioDAO())->deleteAllByUserId($data["id"]);
         return $this->usuarioDao->delete($data["id"]);
     }
 
     public function get(Request $request): object | null {
         $data = $request->all();
         return $this->usuarioDao->get((isset($data["id"]) && !empty($data["id"])) ? $data["id"] : 0);
+    }
+
+    public function user($id): Usuario {
+        return $this->usuarioDao->get($id);
     }
 
     public function listAll(Request $request): array | null {

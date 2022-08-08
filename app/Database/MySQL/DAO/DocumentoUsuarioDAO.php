@@ -38,6 +38,14 @@ class DocumentoUsuarioDAO implements DAO
         return DB::connection("multi-documents")->delete("DELETE FROM documentos_usuario WHERE id = ?", [$id]);
 	}
 
+    public function deleteAllByUserId(int $idUsuario): int {
+        return DB::connection("multi-documents")->delete("DELETE FROM documentos_usuario WHERE usuario_id = ?", [$idUsuario]);
+	}
+
+    public function deleteAllByDataId(int $idDado): int {
+        return DB::connection("multi-documents")->delete("DELETE FROM documentos_usuario WHERE dado_documento_id = ?", [$idDado]);
+	}
+
     // @Override
     public function get(int $id): object | null {
         $res = DB::connection("multi-documents")->selectOne(

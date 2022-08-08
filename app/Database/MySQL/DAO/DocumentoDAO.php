@@ -11,7 +11,7 @@ class DocumentoDAO implements DAO
 	// @Override
     /** @var Parametro[] */
     public function insert(object $documento): int {
-        $id = DB::connection("multi-documents")->table("usuario")->insertGetId(
+        $id = DB::connection("multi-documents")->table("documento")->insertGetId(
             [
                 "nome" => $documento->nome,
                 "pais" => $documento->pais,

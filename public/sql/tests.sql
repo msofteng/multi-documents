@@ -228,6 +228,14 @@ SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.label = "nome" AND dd.p
 
 SELECT IF((SELECT du.id FROM documentos_usuario du WHERE du.dado_documento_id = 1 AND du.usuario_id = 1) IS NULL, false, true) AS `exists`;
 
+# APAGAR UM DOCUMENTO POR COMPLETO (próxima versão: apagar todos os parâmetros que sejam específicos apenas deste documento)
+
+# SELECT d.id FROM dados_documento d WHERE d.documento_id = 1;
+
+# DELETE FROM documentos_usuario WHERE dado_documento_id = 1;
+
+# DELETE FROM dados_documento WHERE documento_id = 1;
+
 
 
 # Atualizar TOKEN do usuário
