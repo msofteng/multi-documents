@@ -3,11 +3,11 @@ http://localhost/api/usuario/login [POST] atualizar TOKEN cada vez que o usuári
 http://localhost/api/usuario/salvar [POST]
 http://localhost/api/usuario/atualizar [PUT]
 http://localhost/api/usuario/excluir [DELETE]
-http://localhost/api/usuario [GET]
-http://localhost/api/usuarios [GET]
-http://localhost/api/usuarios/buscar [GET]
-http://localhost/api/usuarios/total [GET]
-http://localhost/api/usuarios/buscar/total [GET]
+http://localhost/api/usuario [GET] Listar Usuário {OK}
+http://localhost/api/usuarios [GET] Listar Usuários {OK}
+http://localhost/api/usuarios/buscar [GET] Buscar Usuários {OK}
+http://localhost/api/usuarios/total [GET] Listar Usuários (Total)
+http://localhost/api/usuarios/buscar/total [GET] Buscar Usuários (Total)
 
 http://localhost/api/documento/salvar [POST]
 http://localhost/api/documento/atualizar [PUT]

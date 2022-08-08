@@ -62,8 +62,9 @@ class UsuarioDAO implements DAO
     // @Override
     public function list(string $coluna = null, string $ordem = null, int $limit = null, int $offset = null): array | null {
         $users = array();
+
         $res = DB::connection("multi-documents")->select(
-            "SELECT u.id, u.nome, u.local, u.user, u.senha, ST_X(u.location) AS latitude, ST_Y(u.location) AS longitude, u.token FROM usuario u " . ((!empty($coluna) && !empty($ordem)) ? "ORDER BY u." . $coluna . " " . $ordem : "") . (($limit != null && $limit > 0) ? " LIMIT " . (int) $offset . ", " . $limit : "")
+            "SELECT u.id, u.nome, u.local, u.user, u.senha, ST_X(u.location) AS latitude, ST_Y(u.location) AS longitude, u.token FROM usuario u " . ((!empty($coluna) && !empty($ordem)) ? "ORDER BY u." . $coluna . " " . $ordem : "") . ((!empty($limit)) ? " LIMIT " . (int) $offset . ", " . $limit : "")
         );
 
         if (!empty($res)) {
