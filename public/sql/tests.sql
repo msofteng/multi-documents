@@ -212,11 +212,11 @@ SELECT IF((SELECT p.id FROM parametro p WHERE p.titulo = "numero_rg" AND p.tipo 
 
 # Verificar se dado já existe (apenas pelo nome)
 
-SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.label = "nome") IS NOT NULL, true, false) AS `exists`;
+# SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.label = "nome") IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se dado já existe (apenas pelo parâmetro e documento)
 
-SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.parametro_id = 1 AND dd.documento_id = 1) IS NOT NULL, true, false) AS `exists`;
+# SELECT IF((SELECT dd.id FROM dados_documento dd WHERE dd.parametro_id = 1 AND dd.documento_id = 1) IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se dado já existe (nome, parâmetro e documento)
 
