@@ -3,6 +3,8 @@
 use App\Services\UsuarioService;
 use App\Services\DocumentoService;
 use App\Services\ParametroService;
+use App\Services\DadoDocumentoService;
+use App\Services\DocumentoUsuarioService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -152,65 +154,89 @@ Route::get("/api/parametros/buscar/total", function (Request $request) {
 });
 
 
-// rotas (documentos_usuario)
-
-Route::post("/api/usuario/documento/adicionar", function (Request $request) {
-    return view("index");
-});
-
-Route::put("/api/usuario/documento/atualizar", function (Request $request) {
-    return view("index");
-});
-
-Route::delete("/api/usuario/documento/excluir", function (Request $request) {
-    return view("index");
-});
-
-Route::get("/api/usuario/documento", function (Request $request) {
-    return view("index");
-});
-
-Route::get("/api/usuario/documentos", function (Request $request) {
-    return view("index");
-});
-
-Route::get("/api/usuario/documentos/buscar", function (Request $request) {
-    return view("index");
-});
-
-Route::get("/api/usuario/documentos/total", function (Request $request) {
-    return view("index");
-});
-
-Route::get("/api/usuario/documentos/buscar/total", function (Request $request) {
-    return view("index");
-});
-
-
 // rotas (dados_documento)
 
-Route::post("/api/documento/dados/salvar", function (Request $request) {
-    return view("index");
+Route::post("/api/documento/dados/adicionar", function (Request $request) {
+    $id = (new DadoDocumentoService())->create($request);
+    return ($id > 0) ? response(["message" => "A informação do documento foi cadastrada com sucesso"], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: A informação do documento não foi cadastrada"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::put("/api/documento/dados/atualizar", function (Request $request) {
-    return view("index");
+    $bool = (new DadoDocumentoService())->update($request);
+    return ($bool) ? response(["message" => "A informação do documento foi atualizada com sucesso"], 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO!"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::delete("/api/documento/dados/excluir", function (Request $request) {
-    return view("index");
+    $rows = (new DadoDocumentoService())->delete($request);
+    return ($rows > 0) ? response(["message" => "A informação do documento foi excluída com sucesso"], 204, ["Content-Type" => "application/json"]) : response(["mensagem" => "A informação do documento não foi encontrada"], 500, ["Content-Type" => "application/json"]);
+});
+
+Route::get("/api/documento/dado", function (Request $request) {
+    $parametro = (new DadoDocumentoService())->get($request);
+    return (!empty($parametro)) ? response($parametro->toString(), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "A informação do documento não foi encontrada"], 500, ["Content-Type" => "application/json"]);
 });
 
 Route::get("/api/documento/dados", function (Request $request) {
-    return view("index");
+    $parametros = (new DadoDocumentoService())->listAll($request);
+    return (!empty($parametros)) ? response($parametros, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do documento não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
 });
 
-Route::get("/api/documentos/dados", function (Request $request) {
-    return view("index");
+Route::get("/api/documento/dados/buscar", function (Request $request) {
+    $parametros = (new DadoDocumentoService())->findAll($request);
+    return (!empty($parametros)) ? response($parametros, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do documento não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
 });
 
-Route::get("/api/documentos/dados/buscar", function (Request $request) {
-    return view("index");
+Route::get("/api/documento/dados/total", function (Request $request) {
+    $qtd = (new DadoDocumentoService())->countRows();
+    return response(["qtd" => $qtd], 200, ["Content-Type" => "application/json"]);
+});
+
+Route::get("/api/documento/dados/buscar/total", function (Request $request) {
+    $qtd = (new DadoDocumentoService())->countSearchLines($request);
+    return response(["qtd" => $qtd], 200, ["Content-Type" => "application/json"]);
+});
+
+
+// rotas (documentos_usuario)
+
+Route::post("/api/usuario/documentos/salvar", function (Request $request) {
+    $id = (new DocumentoUsuarioService())->create($request);
+    return ($id > 0) ? response(["message" => "A informação do usuário foi inserida no documento"], 206, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO: A informação do usuário não foi inserida no documento"], 500, ["Content-Type" => "application/json"]);
+});
+
+Route::put("/api/usuario/documentos/atualizar", function (Request $request) {
+    $bool = (new DocumentoUsuarioService())->update($request);
+    return ($bool) ? response(["message" => "A informação do usuário foi atualizada no documento"], 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "ERRO!"], 500, ["Content-Type" => "application/json"]);
+});
+
+Route::delete("/api/usuario/documentos/excluir", function (Request $request) {
+    $rows = (new DocumentoUsuarioService())->delete($request);
+    return ($rows > 0) ? response(["message" => "A informação do usuário foi excluida no documento"], 204, ["Content-Type" => "application/json"]) : response(["mensagem" => "A informação do usuário não foi encontrada"], 500, ["Content-Type" => "application/json"]);
+});
+
+Route::get("/api/usuario/documento", function (Request $request) {
+    $parametro = (new DocumentoUsuarioService())->get($request);
+    return (!empty($parametro)) ? response($parametro->toString(), 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "A informação do usuário não foi encontrada"], 500, ["Content-Type" => "application/json"]);
+});
+
+Route::get("/api/usuario/documentos", function (Request $request) {
+    $parametros = (new DocumentoUsuarioService())->listAll($request);
+    return (!empty($parametros)) ? response($parametros, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do usuário não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
+});
+
+Route::get("/api/usuario/documentos/buscar", function (Request $request) {
+    $parametros = (new DocumentoUsuarioService())->findAll($request);
+    return (!empty($parametros)) ? response($parametros, 200, ["Content-Type" => "application/json"]) : response(["mensagem" => "As informações do usuário não foram encontradas. Verifique as informações e tente novamente mais tarde."], 500, ["Content-Type" => "application/json"]);
+});
+
+Route::get("/api/usuario/documentos/total", function (Request $request) {
+    $qtd = (new DocumentoUsuarioService())->countRows();
+    return response(["qtd" => $qtd], 200, ["Content-Type" => "application/json"]);
+});
+
+Route::get("/api/usuario/documentos/buscar/total", function (Request $request) {
+    $qtd = (new DocumentoUsuarioService())->countSearchLines($request);
+    return response(["qtd" => $qtd], 200, ["Content-Type" => "application/json"]);
 });
 
 

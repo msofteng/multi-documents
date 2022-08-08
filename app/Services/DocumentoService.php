@@ -18,12 +18,12 @@ class DocumentoService implements Service {
 
     public function create(Request $request): int {
         $data = $request->all();
-        return $this->documentoDao->insert(new Documento(null, $data["nome"], $data["pais"], $data["descricao"], null));
+        return $this->documentoDao->insert(new Documento(null, $data["nome"], $data["pais"], $data["descricao"]));
     }
 
     public function update(Request $request): bool {
         $data = $request->all();
-        return $this->documentoDao->change(new Documento($data["id"], $data["nome"], $data["pais"], $data["descricao"], null));
+        return $this->documentoDao->change(new Documento($data["id"], $data["nome"], $data["pais"], $data["descricao"]));
     }
 
     public function delete(Request $request): int {

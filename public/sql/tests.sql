@@ -10,7 +10,7 @@ USE `multi-documents`;
 
 # Cadastrar Informação (Documento)
 
-INSERT INTO dados_documento (label, title, placeholder, parametro_id, documento_id) VALUES ('a', 'a', 'a', 1, 1);
+# INSERT INTO dados_documento (label, title, placeholder, parametro_id, documento_id) VALUES ('a', 'a', 'a', 1, 1);
 
 # Cadastrar Usuário
 
@@ -18,7 +18,7 @@ INSERT INTO dados_documento (label, title, placeholder, parametro_id, documento_
 
 # Cadastrar Documento (Usuário) => {atributo: valor}
 
-INSERT INTO documentos_usuario (valor, dado_documento_id, usuario_id) VALUES ('a', 1, 1);
+# INSERT INTO documentos_usuario (valor, dado_documento_id, usuario_id) VALUES ('a', 1, 1);
 
 
 
@@ -32,7 +32,7 @@ INSERT INTO documentos_usuario (valor, dado_documento_id, usuario_id) VALUES ('a
 
 # Atualizar Informação (Documento)
 
-UPDATE dados_documento d SET d.label = 'a', d.title = 'a', d.placeholder = 'a', d.parametro_id = 1, d.documento_id = 1 WHERE d.id = 1;
+# UPDATE dados_documento d SET d.label = 'a', d.title = 'a', d.placeholder = 'a', d.parametro_id = 1, d.documento_id = 1 WHERE d.id = 1;
 
 # Atualizar Usuário
 
@@ -40,7 +40,7 @@ UPDATE dados_documento d SET d.label = 'a', d.title = 'a', d.placeholder = 'a', 
 
 # Atualizar Documento (Usuário) => {atributo: valor}
 
-UPDATE documentos_usuario d SET d.valor = 'a', d.dado_documento_id = 1, d.usuario_id = 1 WHERE d.id = 1;
+# UPDATE documentos_usuario d SET d.valor = 'a', d.dado_documento_id = 1, d.usuario_id = 1 WHERE d.id = 1;
 
 
 
@@ -54,7 +54,7 @@ UPDATE documentos_usuario d SET d.valor = 'a', d.dado_documento_id = 1, d.usuari
 
 # Excluir Informação (Documento)
 
-DELETE FROM dados_documento WHERE id = 1;
+# DELETE FROM dados_documento WHERE id = 1;
 
 # Excluir Usuário
 
@@ -62,7 +62,7 @@ DELETE FROM dados_documento WHERE id = 1;
 
 # Excluir Documento (Usuário) => {atributo: valor}
 
-DELETE FROM documentos_usuario WHERE id = 1;
+# DELETE FROM documentos_usuario WHERE id = 1;
 
 
 
@@ -76,7 +76,7 @@ DELETE FROM documentos_usuario WHERE id = 1;
 
 # Listar Informações (Documento)
 
-SELECT d.id, d.label, d.title, d.placeholder, d.parametro_id, d.documento_id FROM dados_documento d ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT d.id, d.label, d.title, d.placeholder, d.parametro_id, d.documento_id FROM dados_documento d ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar Usuários
 
@@ -84,7 +84,7 @@ SELECT d.id, d.label, d.title, d.placeholder, d.parametro_id, d.documento_id FRO
 
 # Listar Documento (Usuário) => {atributo: valor}
 
-SELECT d.id, d.valor, d.dado_documento_id, d.usuario_id FROM documentos_usuario d ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT d.id, d.valor, d.dado_documento_id, d.usuario_id FROM documentos_usuario d ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 
 
@@ -98,7 +98,7 @@ SELECT d.id, d.valor, d.dado_documento_id, d.usuario_id FROM documentos_usuario 
 
 # Buscar Informação (Documento)
 
-SELECT DISTINCT(d.id), d.label, d.title, d.placeholder, d.parametro_id, d.documento_id FROM dados_documento d WHERE d.label LIKE '%a%' OR d.title LIKE '%a%' OR d.placeholder LIKE '%a%' ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT DISTINCT(d.id), d.label, d.title, d.placeholder, d.parametro_id, d.documento_id FROM dados_documento d WHERE d.label LIKE '%a%' OR d.title LIKE '%a%' OR d.placeholder LIKE '%a%' ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Buscar Usuário
 
@@ -106,7 +106,7 @@ SELECT DISTINCT(d.id), d.label, d.title, d.placeholder, d.parametro_id, d.docume
 
 # Buscar Documento (Usuário) => {atributo: valor}
 
-SELECT DISTINCT(d.id), d.valor, d.dado_documento_id, d.usuario_id FROM documentos_usuario d WHERE d.valor LIKE '%a%' ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT DISTINCT(d.id), d.valor, d.dado_documento_id, d.usuario_id FROM documentos_usuario d WHERE d.valor LIKE '%a%' ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 
 
@@ -124,7 +124,7 @@ SELECT d.id, dd.label, d.valor FROM documentos_usuario d, dados_documento dd WHE
 
 # Listar Documento (Usuário) => {atributo: valor} [por usuário]
 
-SELECT d.id, d.valor, u.user FROM documentos_usuario d, usuario u WHERE d.usuario_id = u.id AND u.id = 1 ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT d.id, d.valor, u.user FROM documentos_usuario d, usuario u WHERE d.usuario_id = u.id AND u.id = 1 ORDER BY d.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 
 
