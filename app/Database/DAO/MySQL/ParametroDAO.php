@@ -13,7 +13,7 @@ class ParametroDAO implements DAO
         $id = DB::connection("multi-documents")->table("parametro")->insertGetId(
             [
                 "titulo" => $parametro->titulo,
-                "tipo" => $parametro->titulo,
+                "tipo" => $parametro->tipo,
                 "regex" => $parametro->regex
             ]
         );

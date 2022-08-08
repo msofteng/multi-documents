@@ -21,7 +21,7 @@ class ParametroService implements Service {
 
     public function create(Request $request): int {
         $data = $request->all();
-        $exists = DAOUtil::isUsuario($data["user"]);
+        $exists = DAOUtil::isParametro($data["titulo"], $data["tipo"]);
 
         if (!$exists) {
             return $this->parametroDao->insert(new Parametro(null, $data["titulo"], $data["tipo"], $data["regex"]));

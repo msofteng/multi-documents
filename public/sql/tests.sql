@@ -204,7 +204,7 @@ SELECT * FROM usuario;
 
 # Verificar se documento já existe
 
-SELECT IF((SELECT d.id FROM documento d WHERE d.nome = "RG" AND d.pais = "Brasil") IS NOT NULL, true, false) AS `exists`;
+# SELECT IF((SELECT d.id FROM documento d WHERE d.nome = "RG" AND d.pais = "Brasil") IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se parâmetro já existe
 
