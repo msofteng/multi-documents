@@ -192,12 +192,6 @@ USE `multi-documents`;
 
 
 
-# Login do usuário
-
-SELECT IF((SELECT u.id FROM usuario u WHERE u.user = "luciano22" AND u.senha = sha2("123", 256)) IS NOT NULL, true, false) AS login;
-
-SELECT * FROM usuario;
-
 # Verificar se usuário já existe
 
 # SELECT IF((SELECT u.id FROM usuario u WHERE u.user = "mateus22") IS NOT NULL, true, false) AS `exists`;
@@ -233,6 +227,12 @@ SELECT * FROM usuario;
 # DELETE FROM documentos_usuario WHERE dado_documento_id = 1;
 
 # DELETE FROM dados_documento WHERE documento_id = 1;
+
+
+
+# Login do usuário
+
+SELECT IF((SELECT u.id FROM usuario u WHERE u.user = "luciano22" AND u.senha = sha2("123", 256)) IS NOT NULL, true, false) AS login;
 
 # Atualizar TOKEN do usuário
 

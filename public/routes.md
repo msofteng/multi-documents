@@ -65,12 +65,12 @@ http://localhost/analytics/usuario/atualizar [PUT]
 <!-- http://localhost/analytics/usuarios/documento [POST] -->
 <!-- http://localhost/analytics/usuario/documentos [POST] -->
 
--- ROTAS PARA VALIDAÇÃO DE REGISTROS (verificar se já existem) DAOUtil
+<!-- ROTAS PARA VALIDAÇÃO DE REGISTROS (verificar se já existem) DAOUtil -->
 
 ✓ o objetivo é proteger todas as rotas com o TOKEN do usuário, exceto a de login
 ✓ a cada login o TOKEN do usuário é atualizado, portanto não terá fraudes
-✓ cookies e sessões deixo para mais tarde caso este projeto avançe de fase
-✓ criar uma camada Util para desenvolver métodos auxiliares no código-fonte
+<!-- ✓ cookies e sessões deixo para mais tarde caso este projeto avançe de fase -->
+<!-- ✓ criar uma camada Util para desenvolver métodos auxiliares no código-fonte -->
 
 
 https://www.postman.com/mssilva4/workspace/multi-documents
