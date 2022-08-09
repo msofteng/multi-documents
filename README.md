@@ -11,6 +11,12 @@ Este projeto foi gerado usando
 ./initialize
 ```
 
+![image](https://user-images.githubusercontent.com/51000704/183752076-e6d076c5-6852-4091-9225-7f0347d3084c.png)
+
+Quando este pacote estiver sendo extraído conforme imagem acima e chegar aos 60%, correr no arquivo shell `./vendor/laravel/sail/bin/sail` e comentar rapidamente as linhas abaixo antes de terminar a descompactação deste pacote para não haver erro de compatibilidade do sistema operacional:
+
+<image>
+
 <!-- Initializer for Laravel Todos END  -->
 ## Desenvolvimento Local
 
