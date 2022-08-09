@@ -29,8 +29,6 @@ a [documentação oficial](https://laravel.com/docs/sail).
 ### Links
 
 - **multi-documents (local)** http://localhost
-- **Visualizar e-mails via Mailhog** http://localhost:8025
-- **Painel de administração do MeiliSearch** http://localhost:7700
 
 ### Inicie o servidor de desenvolvimento
 
