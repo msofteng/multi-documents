@@ -8,7 +8,7 @@ Este projeto foi gerado usando
 ([Inicializador para Laravel](https://laravel.initializer.dev)). Para finalizar a configuração do projeto, execute o seguinte comando no seu terminal shell:
 
 ```shell
-./initialize.sh
+./initialize
 ```
 
 <!-- Initializer for Laravel Todos END  -->
