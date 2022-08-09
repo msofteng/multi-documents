@@ -17,6 +17,8 @@ Quando este pacote estiver sendo extraído conforme imagem acima e chegar aos 60
 
 ![image](https://user-images.githubusercontent.com/51000704/183752689-bd52216d-f55e-4e47-aa53-b826bf5ddf78.png)
 
+Fonte: https://stackoverflow.com/a/69876758/11419721
+
 <!-- Initializer for Laravel Todos END  -->
 ## Desenvolvimento Local
 
