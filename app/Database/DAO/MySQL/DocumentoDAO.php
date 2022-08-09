@@ -41,7 +41,7 @@ class DocumentoDAO implements DAO
 	}
 
     // @Override
-    public function get(int $id): object {
+    public function get(int $id): object | null {
         $res = DB::connection("multi-documents")->selectOne(
             "SELECT d.id, d.nome, d.pais, d.descricao FROM documento d WHERE d.id = ?",
             [$id]

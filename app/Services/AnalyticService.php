@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Database\DAO\MySQL\DAOAnalytic;
+use Exception;
 use Illuminate\Http\Request;
 
 class AnalyticService {
@@ -20,23 +21,25 @@ class AnalyticService {
         return json_decode("{}");
     }
 
-    public function getDocumento(int $id): object {
+    public function getDocumento(Request $request): array | null {
+        $data = $request->all();
+        $doc = $this->analyticDao->document($data["id"]);
+        return (!empty($doc)) ? $doc : throw new Exception("O documento não foi encontrado");
+    }
+
+    public function getDadosDocumento(Request $request): object {
         return json_decode("{}");
     }
 
-    public function getDadosDocumento(int $id): object {
+    public function getUsuario(Request $request): object {
         return json_decode("{}");
     }
 
-    public function getUsuario(int $id): object {
+    public function getUsuarioLite(Request $request): object {
         return json_decode("{}");
     }
 
-    public function getUsuarioLite(int $id): object {
-        return json_decode("{}");
-    }
-
-    public function getUsuarioDocs(int $id): object {
+    public function getUsuarioDocs(Request $request): object {
         return json_decode("{}");
     }
 }

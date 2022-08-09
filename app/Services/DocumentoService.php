@@ -23,17 +23,13 @@ class DocumentoService implements Service {
     public function create(Request $request): int {
         $data = $request->all();
         $exists = DAOUtil::isDocumento($data["nome"], $data["pais"]);
-
-        if (!$exists) {
-            return $this->documentoDao->insert(new Documento(null, $data["nome"], $data["pais"], $data["descricao"]));
-        } else {
-            throw new Exception("O documento já foi cadastrado", 1062);
-        }
+        return (!$exists) ? $this->documentoDao->insert(new Documento(null, $data["nome"], $data["pais"], $data["descricao"])) : throw new Exception("O documento já foi cadastrado", 1062);
     }
 
     public function update(Request $request): bool {
         $data = $request->all();
-        return $this->documentoDao->change(new Documento($data["id"], $data["nome"], $data["pais"], $data["descricao"]));
+        $bool = $this->documentoDao->change(new Documento($data["id"], $data["nome"], $data["pais"], $data["descricao"]));
+        return ($bool) ? $bool : throw new Exception("ERRO!");
     }
 
     public function delete(Request $request): int {
@@ -49,13 +45,14 @@ class DocumentoService implements Service {
         }
 
         $dadoDocumentoDao->deleteAllByDocumentId($data["id"]);
-
-        return $this->documentoDao->delete($data["id"]);
+        $rows = $this->documentoDao->delete($data["id"]);
+        return ($rows > 0) ? $rows : throw new Exception("O documento não foi encontrado");
     }
 
     public function get(Request $request): object | null {
         $data = $request->all();
-        return $this->documentoDao->get((isset($data["id"]) && !empty($data["id"])) ? $data["id"] : 0);
+        $documento = $this->documentoDao->get((isset($data["id"]) && !empty($data["id"])) ? $data["id"] : 0);
+        return (!empty($documento)) ? $documento : throw new Exception("O documento não foi encontrado");
     }
 
     public function document(int $id): Documento | null {
@@ -64,12 +61,14 @@ class DocumentoService implements Service {
 
     public function listAll(Request $request): array | null {
         $data = $request->all();
-        return $this->documentoDao->list((isset($data["coluna"])) ? $data["coluna"] : null, (isset($data["ordem"])) ? $data["ordem"] : null, (isset($data["limit"])) ? $data["limit"] : null, (isset($data["offset"])) ? $data["offset"] : null);
+        $documentos = $this->documentoDao->list((isset($data["coluna"])) ? $data["coluna"] : null, (isset($data["ordem"])) ? $data["ordem"] : null, (isset($data["limit"])) ? $data["limit"] : null, (isset($data["offset"])) ? $data["offset"] : null);
+        return (!empty($documentos)) ? $documentos : throw new Exception("Os documentos não foram encontrados. Verifique as informações e tente novamente mais tarde.");
     }
 
     public function findAll(Request $request): array | null {
         $data = $request->all();
-        return $this->documentoDao->find($data["q"], (isset($data["coluna"])) ? $data["coluna"] : null, (isset($data["ordem"])) ? $data["ordem"] : null, (isset($data["limit"])) ? $data["limit"] : null, (isset($data["offset"])) ? $data["offset"] : null);
+        $documentos = $this->documentoDao->find($data["q"], (isset($data["coluna"])) ? $data["coluna"] : null, (isset($data["ordem"])) ? $data["ordem"] : null, (isset($data["limit"])) ? $data["limit"] : null, (isset($data["offset"])) ? $data["offset"] : null);
+        return (!empty($documentos)) ? $documentos : throw new Exception("Os documentos não foram encontrados. Verifique as informações e tente novamente mais tarde.");
     }
 
     public function countRows(): int {

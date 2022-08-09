@@ -54,11 +54,15 @@ http://localhost/api/usuario/login [POST] atualizar TOKEN cada vez que o usuári
 
 
 http://localhost/analytics/documento/salvar [POST]
+http://localhost/analytics/usuario/salvar [POST]
+http://localhost/analytics/documento/atualizar [PUT]
+http://localhost/analytics/usuario/atualizar [PUT]
+
+
 http://localhost/analytics/documento/ [POST]
 http://localhost/analytics/documento/dados [POST]
-http://localhost/analytics/usuario/salvar [POST]
 http://localhost/analytics/usuario/ [POST]
-http://localhost/analytics/usuario/simple [POST]
+http://localhost/analytics/usuario/documento [POST]
 http://localhost/analytics/usuario/documentos [POST]
 
 -- ROTAS PARA VALIDAÇÃO DE REGISTROS (verificar se já existem) DAOUtil

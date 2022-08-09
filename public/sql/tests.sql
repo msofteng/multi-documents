@@ -130,7 +130,7 @@ USE `multi-documents`;
 
 # Listar Informação (Documento) [por documento] [JSON]
 
-SELECT JSON_OBJECT('nome', doc.nome, 'pais', doc.pais, 'descricao', doc.descricao, 'dados', (SELECT JSON_ARRAYAGG(JSON_OBJECT('parametro', p.titulo, 'tipo', p.tipo, 'regex', p.regex, 'info', JSON_OBJECT('label', dd.label, 'title', dd.title, 'placeholder', dd.placeholder))) FROM documento doc, dados_documento dd, parametro p WHERE dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1)) AS `json` FROM documento doc WHERE doc.id = 1;
+# SELECT JSON_OBJECT('nome', doc.nome, 'pais', doc.pais, 'descricao', doc.descricao, 'dados', (SELECT JSON_ARRAYAGG(JSON_OBJECT('parametro', p.titulo, 'tipo', p.tipo, 'regex', p.regex, 'info', JSON_OBJECT('label', dd.label, 'title', dd.title, 'placeholder', dd.placeholder))) FROM documento doc, dados_documento dd, parametro p WHERE dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1)) AS `json` FROM documento doc WHERE doc.id = 1;
 
 # Listar Atributos (Documento) [por documento] [JSON]
 
@@ -138,7 +138,7 @@ SELECT JSON_OBJECT('parametro', p.titulo, 'tipo', p.tipo, 'regex', p.regex, 'inf
 
 # Listar Atributos (Documento) [por documento] [JSON Array]
 
-SELECT JSON_ARRAYAGG(JSON_OBJECT('parametro', p.titulo, 'tipo', p.tipo, 'regex', p.regex, 'info', JSON_OBJECT('label', dd.label, 'title', dd.title, 'placeholder', dd.placeholder))) AS `json` FROM documento doc, dados_documento dd, parametro p WHERE dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1;
+2 = SELECT JSON_ARRAYAGG(JSON_OBJECT('parametro', p.titulo, 'tipo', p.tipo, 'regex', p.regex, 'info', JSON_OBJECT('label', dd.label, 'title', dd.title, 'placeholder', dd.placeholder))) AS `json` FROM documento doc, dados_documento dd, parametro p WHERE dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1;
 
 
 
@@ -147,7 +147,7 @@ SELECT JSON_ARRAYAGG(JSON_OBJECT('parametro', p.titulo, 'tipo', p.tipo, 'regex',
 
 # Listar todos os documentos do usuário [apenas ID]
 
-# SELECT DISTINCT(doc.id), doc.nome FROM usuario u, documentos_usuario du, dados_documento dd, documento doc WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND u.id = 1 ORDER BY doc.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+5 COMBINE - SELECT DISTINCT(doc.id), doc.nome FROM usuario u, documentos_usuario du, dados_documento dd, documento doc WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND u.id = 1 ORDER BY doc.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar todas as informações do usuário (por documento)
 
@@ -155,18 +155,18 @@ SELECT JSON_ARRAYAGG(JSON_OBJECT('parametro', p.titulo, 'tipo', p.tipo, 'regex',
 
 # Listar todas as informações do usuário [JSON] (sem documentos)
 
-SELECT JSON_OBJECT('id', u.id, 'nome', u.nome, 'user', u.user, 'local', JSON_OBJECT('nome', u.local, 'localizacao', JSON_OBJECT('latitude', ST_X(u.location), 'longitude', ST_Y(u.location)))) AS json FROM usuario u WHERE u.id = 1;
+3 - SELECT JSON_OBJECT('id', u.id, 'nome', u.nome, 'user', u.user, 'local', JSON_OBJECT('nome', u.local, 'localizacao', JSON_OBJECT('latitude', ST_X(u.location), 'longitude', ST_Y(u.location)))) AS json FROM usuario u WHERE u.id = 1;
 
 
 
 
 # Listar todas as informações do usuário (por documento) [JSON Array]
 
-SELECT JSON_ARRAYAGG(JSON_OBJECT(p.titulo, du.valor)) AS `json` FROM usuario u, documentos_usuario du, dados_documento dd, documento doc, parametro p WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1 ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+# SELECT JSON_ARRAYAGG(JSON_OBJECT(p.titulo, du.valor)) AS `json` FROM usuario u, documentos_usuario du, dados_documento dd, documento doc, parametro p WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1 ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 # Listar todas as informações do usuário (por documento) [JSON]
 
-SELECT REPLACE(REPLACE(REPLACE(REPLACE(JSON_ARRAYAGG(JSON_OBJECT(p.titulo, du.valor)), "{", ""), "}", ""), "[", "{"), "]", "}") AS `json` FROM usuario u, documentos_usuario du, dados_documento dd, documento doc, parametro p WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1 ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
+4 - SELECT REPLACE(REPLACE(REPLACE(REPLACE(JSON_ARRAYAGG(JSON_OBJECT(p.titulo, du.valor)), "{", ""), "}", ""), "[", "{"), "]", "}") AS `json` FROM usuario u, documentos_usuario du, dados_documento dd, documento doc, parametro p WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = 1 ORDER BY p.id ASC LIMIT 0, 20; # LIMIT {offset}, {limit}
 
 
 
@@ -208,7 +208,7 @@ SELECT * FROM usuario;
 
 # Verificar se parâmetro já existe
 
-# SELECT IF((SELECT p.id FROM parametro p WHERE p.titulo = "numero_rg" AND p.tipo = "texto") IS NOT NULL, true, false) AS `exists`;
+# SELECT IF((SELECT p.id FROM parametro p WHERE p.titulo = "valor_divida" AND p.tipo = "double") IS NOT NULL, true, false) AS `exists`;
 
 # Verificar se dado já existe (apenas pelo nome)
 
