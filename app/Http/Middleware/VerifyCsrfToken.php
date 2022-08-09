@@ -32,6 +32,8 @@ class VerifyCsrfToken extends Middleware
         "/analytics/documento/dados",
         "/analytics/usuario",
         "/analytics/usuarios/documento",
-        "/analytics/usuario/documentos"
+        "/analytics/usuario/documentos",
+        "/analytics/documento/salvar",
+        "/analytics/usuario/salvar"
     ];
 }

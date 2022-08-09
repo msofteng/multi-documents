@@ -49,13 +49,13 @@ class DocumentoUsuarioService implements Service {
     public function listAll(Request $request): array | null {
         $data = $request->all();
         $dados = $this->documentoUsuarioDao->list((isset($data["coluna"])) ? $data["coluna"] : null, (isset($data["ordem"])) ? $data["ordem"] : null, (isset($data["limit"])) ? $data["limit"] : null, (isset($data["offset"])) ? $data["offset"] : null);
-        return (!empty($dados)) ? $dados : throw new Exception("As informações do usuário não foram encontradas. Verifique as informações e tente novamente mais tarde.");
+        return (!empty($dados)) ? $dados : throw new Exception("As informações dos usuários não foram encontradas. Verifique as informações e tente novamente mais tarde.");
     }
 
     public function findAll(Request $request): array | null {
         $data = $request->all();
         $dados = $this->documentoUsuarioDao->find($data["q"], (isset($data["coluna"])) ? $data["coluna"] : null, (isset($data["ordem"])) ? $data["ordem"] : null, (isset($data["limit"])) ? $data["limit"] : null, (isset($data["offset"])) ? $data["offset"] : null);
-        return (!empty($dados)) ? $dados : throw new Exception("As informações do usuário não foram encontradas. Verifique as informações e tente novamente mais tarde.");
+        return (!empty($dados)) ? $dados : throw new Exception("As informações do usuários não foram encontradas. Verifique as informações e tente novamente mais tarde.");
     }
 
     public function countRows(): int {

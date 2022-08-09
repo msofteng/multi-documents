@@ -9,7 +9,7 @@ class DAOAnalytic
 {
     public function document(int $documentId): array | null {
         $res = DB::connection("multi-documents")->selectOne(
-            "SELECT JSON_OBJECT('nome', doc.nome, 'pais', doc.pais, 'descricao', doc.descricao, 'dados', (SELECT JSON_ARRAYAGG(JSON_OBJECT('parametro', p.titulo, 'tipo', p.tipo, 'regex', p.regex, 'info', JSON_OBJECT('label', dd.label, 'title', dd.title, 'placeholder', dd.placeholder))) FROM documento doc, dados_documento dd, parametro p WHERE dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = ?)) AS `json` FROM documento doc WHERE doc.id = ?",
+            "SELECT JSON_OBJECT('id', doc.id, 'nome', doc.nome, 'pais', doc.pais, 'descricao', doc.descricao, 'dados', (SELECT JSON_ARRAYAGG(JSON_OBJECT('parametro', p.titulo, 'tipo', p.tipo, 'regex', p.regex, 'info', JSON_OBJECT('label', dd.label, 'title', dd.title, 'placeholder', dd.placeholder))) FROM documento doc, dados_documento dd, parametro p WHERE dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = ?)) AS `json` FROM documento doc WHERE doc.id = ?",
             [
                 $documentId,
                 $documentId
@@ -21,7 +21,7 @@ class DAOAnalytic
 
     public function documentData(int $documentId): array | null {
         $res = DB::connection("multi-documents")->selectOne(
-            "SELECT JSON_ARRAYAGG(JSON_OBJECT('id', dd.id, 'documentoId', dd.documento_id, 'parametro', p.titulo, 'tipo', p.tipo, 'regex', p.regex, 'info', JSON_OBJECT('label', dd.label, 'title', dd.title, 'placeholder', dd.placeholder))) AS `json` FROM documento doc, dados_documento dd, parametro p WHERE dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = ?",
+            "SELECT JSON_ARRAYAGG(JSON_OBJECT('id', dd.id, 'documentoId', doc.id, 'parametro', p.titulo, 'tipo', p.tipo, 'regex', p.regex, 'info', JSON_OBJECT('label', dd.label, 'title', dd.title, 'placeholder', dd.placeholder))) AS `json` FROM documento doc, dados_documento dd, parametro p WHERE dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = ?",
             [
                 $documentId
             ]

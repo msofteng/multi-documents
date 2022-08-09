@@ -49,6 +49,18 @@ class ParametroDAO implements DAO
         return (!empty($res)) ? new Parametro($res->id, $res->titulo, $res->tipo, $res->regex) : null;
 	}
 
+    public function getIdParametro(string $titulo, string $tipo): int {
+        $res = DB::connection("multi-documents")->selectOne(
+            "SELECT p.id FROM parametro p WHERE p.titulo = ? AND p.tipo = ?",
+            [
+                $titulo,
+                $tipo
+            ]
+        );
+
+        return (!empty($res)) ? $res->id : 0;
+	}
+
     // @Override
     public function list(string $coluna = null, string $ordem = null, int $limit = null, int $offset = null): array | null {
         $parameters = array();

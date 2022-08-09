@@ -485,3 +485,22 @@ Route::post("/analytics/usuario/documentos", function (Request $request) {
         return response(Util::formatException($ex), 500, ["Content-Type" => "application/json"]);
     }
 });
+
+Route::post("/analytics/documento/salvar", function (Request $request) {
+    try {
+        $service = new AnalyticService();
+        $id = $service->salvarDocumento($request);
+        return response(["message" => "O documento foi cadastrado com sucesso", "documento" => $service->document($id)], 200, ["Content-Type" => "application/json"]);
+    } catch (Exception | Error $ex) {
+        return response(Util::formatException($ex), 500, ["Content-Type" => "application/json"]);
+    }
+});
+
+Route::post("/analytics/usuario/salvar", function (Request $request) {
+    try {
+        $data = (new AnalyticService())->salvarUsuario($request);
+        return response($data, 200, ["Content-Type" => "application/json"]);
+    } catch (Exception | Error $ex) {
+        return response(Util::formatException($ex), 500, ["Content-Type" => "application/json"]);
+    }
+});
