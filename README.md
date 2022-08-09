@@ -11,11 +11,19 @@ Este projeto foi gerado usando
 ./initialize
 ```
 
-![image](https://user-images.githubusercontent.com/51000704/183752076-e6d076c5-6852-4091-9225-7f0347d3084c.png)
+<details>
+	<summary>[imagem]</summary>
+	<br>
+	<img src="https://user-images.githubusercontent.com/51000704/183752076-e6d076c5-6852-4091-9225-7f0347d3084c.png">
+</details>
 
 Quando este pacote estiver sendo extraído conforme imagem acima e chegar aos 60%, correr no arquivo shell `./vendor/laravel/sail/bin/sail` e comentar rapidamente as linhas abaixo antes de terminar a descompactação deste pacote para não haver erro de compatibilidade do sistema operacional:
 
-![image](https://user-images.githubusercontent.com/51000704/183752689-bd52216d-f55e-4e47-aa53-b826bf5ddf78.png)
+<details>
+	<summary>[imagem]</summary>
+	<br>
+	<img src="https://user-images.githubusercontent.com/51000704/183752689-bd52216d-f55e-4e47-aa53-b826bf5ddf78.png">
+</details>
 
 Fonte: https://stackoverflow.com/a/69876758/11419721
 
