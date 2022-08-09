@@ -468,15 +468,6 @@ Route::post("/analytics/usuario", function (Request $request) {
     }
 });
 
-Route::post("/analytics/usuarios/documento", function (Request $request) {
-    try {
-        $data = (new AnalyticService())->getDocUsuarios($request);
-        return response($data, 200, ["Content-Type" => "application/json"]);
-    } catch (Exception | Error $ex) {
-        return response(Util::formatException($ex), 500, ["Content-Type" => "application/json"]);
-    }
-});
-
 Route::post("/analytics/usuario/documentos", function (Request $request) {
     try {
         $data = (new AnalyticService())->getDocsUsuario($request);
@@ -498,8 +489,9 @@ Route::post("/analytics/documento/salvar", function (Request $request) {
 
 Route::post("/analytics/usuario/salvar", function (Request $request) {
     try {
-        $data = (new AnalyticService())->salvarUsuario($request);
-        return response($data, 200, ["Content-Type" => "application/json"]);
+        $service = new AnalyticService();
+        $id = (new AnalyticService())->salvarUsuario($request);
+        return response(["message" => "O usuário foi cadastrado com sucesso", "usuario" => $service->user($id)], 200, ["Content-Type" => "application/json"]);
     } catch (Exception | Error $ex) {
         return response(Util::formatException($ex), 500, ["Content-Type" => "application/json"]);
     }

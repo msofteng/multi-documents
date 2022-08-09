@@ -41,20 +41,17 @@ class DAOAnalytic
         return (!empty($res->json)) ? json_decode($res->json, true) : null;
     }
 
-    public function docUsuarios(int $documentId): array | null {
+    public function docUsuario(int $documentoId, int $usuarioId): array | null {
         $users = array();
-        $res = DB::connection("multi-documents")->select(
-            'SELECT REPLACE(REPLACE(REPLACE(REPLACE(JSON_ARRAYAGG(JSON_OBJECT(p.titulo, du.valor)), "{", ""), "}", ""), "[", "{"), "]", "}") AS `json` FROM usuario u, documentos_usuario du, dados_documento dd, documento doc, parametro p WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = ?',
+        $res = DB::connection("multi-documents")->selectOne(
+            'SELECT REPLACE(REPLACE(REPLACE(REPLACE(JSON_ARRAYAGG(JSON_OBJECT(p.titulo, du.valor)), "{", ""), "}", ""), "[", "{"), "]", "}") AS `json` FROM usuario u, documentos_usuario du, dados_documento dd, documento doc, parametro p WHERE du.usuario_id = u.id AND du.dado_documento_id = dd.id AND dd.documento_id = doc.id AND dd.parametro_id = p.id AND doc.id = ? AND u.id = ?',
             [
-                $documentId
+                $documentoId,
+                $usuarioId
             ]
         );
 
-        foreach ($res as $doc) {
-            if (!empty($doc->json)) array_push($users, json_decode($doc->json, true));
-        }
-
-        return $users;
+        return (!empty($res->json)) ? json_decode($res->json, true) : null;
     }
 
     public function docsUsuario(int $usuarioId): array | null { // #5

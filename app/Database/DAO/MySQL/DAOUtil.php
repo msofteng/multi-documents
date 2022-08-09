@@ -29,6 +29,18 @@ class DAOUtil
         return (bool) $res->exists;
     }
 
+    public static function isDocumentoParametro(string $tituloParametro, string $nomeDocumento): bool {
+        $res = DB::connection("multi-documents")->selectOne(
+            "SELECT IF((SELECT dd.id FROM documento d, dados_documento dd, parametro p WHERE dd.documento_id = d.id AND dd.parametro_id = p.id AND p.titulo = ? AND d.nome = ?) IS NOT NULL, true, false) AS `exists`",
+            [
+                $tituloParametro,
+                $nomeDocumento
+            ]
+        );
+
+        return (bool) $res->exists;
+    }
+
     public static function isParametro(string $titulo, string $tipo): bool {
         $res = DB::connection("multi-documents")->selectOne(
             "SELECT IF((SELECT p.id FROM parametro p WHERE p.titulo = ? AND p.tipo = ?) IS NOT NULL, true, false) AS `exists`",

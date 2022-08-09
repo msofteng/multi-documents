@@ -50,6 +50,18 @@ class DocumentoDAO implements DAO
         return (!empty($res)) ? new Documento($res->id, $res->nome, $res->pais, $res->descricao) : null;
 	}
 
+    public function getDocumentByNameAndCountry(string $nome, string $pais): object | null {
+        $res = DB::connection("multi-documents")->selectOne(
+            "SELECT d.id, d.nome, d.pais, d.descricao FROM documento d WHERE d.nome = ? AND d.pais = ?",
+            [
+                $nome,
+                $pais
+            ]
+        );
+
+        return (!empty($res)) ? new Documento($res->id, $res->nome, $res->pais, $res->descricao) : null;
+	}
+
     // @Override
     public function list(string $coluna = null, string $ordem = null, int $limit = null, int $offset = null): array {
         $docs = array();

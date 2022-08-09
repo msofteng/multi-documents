@@ -15,4 +15,15 @@ class Util
             "line" => $ex->getLine()
         ];
     }
+
+    public static function getParametros(array $dadosDocumentos): array {
+        $parametros = array();
+
+        foreach ($dadosDocumentos as $parametro) {
+            array_push($parametros, $parametro["parametro"]);
+        }
+
+        ksort($parametros);
+        return $parametros;
+    }
 }
