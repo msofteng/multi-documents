@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `documento` (
     `pais` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL,
     `descricao` VARCHAR(200) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NULL,
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB;
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `parametro` (
     `tipo` VARCHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL,
     `regex` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NULL,
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB;
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `dados_documento` (
     PRIMARY KEY (`id`),
     FOREIGN KEY (`parametro_id`) REFERENCES `parametro` (`id`),
     FOREIGN KEY (`documento_id`) REFERENCES `documento` (`id`)
-) ENGINE = InnoDB;
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
     `location` POINT NULL,
     `token` CHAR(32) NULL,
     PRIMARY KEY (`id`)
-) ENGINE = InnoDB;
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `documentos_usuario` (
     PRIMARY KEY (`id`),
     FOREIGN KEY (`dado_documento_id`) REFERENCES `dados_documento` (`id`),
     FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE = InnoDB;
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;
 
 -- -----------------------------------------------------
 -- Data for table `documento`
