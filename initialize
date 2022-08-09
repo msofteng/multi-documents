@@ -37,7 +37,7 @@ echo -e '┃ multiple times, so it can take a while to complete.';
 echo -e '┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';if [ -t 1 ];
 then
     echo '';
-    read -n 1 -s -r -p "Press any key to continue";
+    read -n 1 -s -r -p "Pressione qualquer tecla para continuar";
     echo '';
 else
     echo '';
@@ -55,7 +55,7 @@ docker run --rm \
     -v "$(pwd)":/opt \
     -w /opt \
     "initializerforlaravel/sail-php-8.1:latest" \
-    bash -c "composer install && php -r \"file_exists('.env') || copy('.env.example', '.env');\" && php artisan key:generate --ansi && php artisan sail:install --with=mysql,redis,meilisearch,mailhog && perl -0777 -pi -e 's/\.\/vendor\/laravel\/sail\/runtimes\/\d\.\d/.\/vendor\/laravel\/sail\/runtimes\/8.1/g' docker-compose.yml && perl -0777 -pi -e 's/sail-\d\.\d\/app/sail-8.1\/app/g' docker-compose.yml"
+    bash -c "composer install && php -r \"file_exists('.env') || copy('.env.example', '.env');\" && php artisan key:generate --ansi && php artisan sail:install --with=mysql && perl -0777 -pi -e 's/\.\/vendor\/laravel\/sail\/runtimes\/\d\.\d/.\/vendor\/laravel\/sail\/runtimes\/8.1/g' docker-compose.yml && perl -0777 -pi -e 's/sail-\d\.\d\/app/sail-8.1\/app/g' docker-compose.yml"
 echo '';
 echo -e '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
 echo -e '┃ 🚀 [1mAjustar permissões[0m';
@@ -78,14 +78,6 @@ echo -e '┗━━━━━━━━━━━━━━━━━━━━━━�
 
 echo './vendor/bin/sail up -d'
 ./vendor/bin/sail up -d
-echo '';
-echo -e '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
-echo -e '┃ 🚀 [1mConifigurar Laravel Scout[0m';
-
-echo -e '┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';echo '';
-
-echo './vendor/bin/sail artisan --no-interaction vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"'
-./vendor/bin/sail artisan --no-interaction vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
 echo '';
 echo -e '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
 echo -e '┃ 🚀 [1mMigrar o banco de dados[0m';
@@ -117,11 +109,12 @@ echo -e '┃ 🚀 [1mConfigurar front-end[0m';
 echo -e '┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';echo '';
 
 echo './vendor/bin/sail npm install '
-./vendor/bin/sail npm install 
+./vendor/bin/sail npm install
 echo './vendor/bin/sail npm run build'
 ./vendor/bin/sail npm run build
 
 echo "Configuração finalizada, removendo inicializar e TODOs no README.md!";
+
 
 # Remove TODO in readme
 perl -0777 -pi -e 's/<!-- Inicializador para Laravel Todos START  -->.*<!-- Inicializador para Laravel Todos END  -->//gs' README.md
@@ -134,6 +127,4 @@ echo -e '┃ e links para os componentes instalados.';
 echo -e '┃ ';
 echo -e '┃ Alguns links úteis:';
 echo -e '┃ - Seu aplicativo http://localhost';
-echo -e '┃ - Visualizar e-mails via Mailhog http://localhost:8025';
-echo -e '┃ - Painel de administração do MeiliSearch http://localhost:7700';
 echo -e '┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';echo '';
