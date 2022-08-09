@@ -452,8 +452,8 @@ Route::post("/analytics/documento", function (Request $request) {
 
 Route::post("/analytics/documento/dados", function (Request $request) {
     try {
-        $data = (new AnalyticService());
-        return response([], 200, ["Content-Type" => "application/json"]);
+        $data = (new AnalyticService())->getDadosDocumento($request);
+        return response($data, 200, ["Content-Type" => "application/json"]);
     } catch (Exception | Error $ex) {
         return response(Util::formatException($ex), 500, ["Content-Type" => "application/json"]);
     }
@@ -461,17 +461,17 @@ Route::post("/analytics/documento/dados", function (Request $request) {
 
 Route::post("/analytics/usuario", function (Request $request) {
     try {
-        $data = (new AnalyticService());
-        return response([], 200, ["Content-Type" => "application/json"]);
+        $data = (new AnalyticService())->getUsuario($request);
+        return response($data, 200, ["Content-Type" => "application/json"]);
     } catch (Exception | Error $ex) {
         return response(Util::formatException($ex), 500, ["Content-Type" => "application/json"]);
     }
 });
 
-Route::post("/analytics/usuario/documento", function (Request $request) {
+Route::post("/analytics/usuarios/documento", function (Request $request) {
     try {
-        $data = (new AnalyticService());
-        return response([], 200, ["Content-Type" => "application/json"]);
+        $data = (new AnalyticService())->getDocUsuarios($request);
+        return response($data, 200, ["Content-Type" => "application/json"]);
     } catch (Exception | Error $ex) {
         return response(Util::formatException($ex), 500, ["Content-Type" => "application/json"]);
     }
@@ -479,11 +479,9 @@ Route::post("/analytics/usuario/documento", function (Request $request) {
 
 Route::post("/analytics/usuario/documentos", function (Request $request) {
     try {
-        $data = (new AnalyticService());
-        return response([], 200, ["Content-Type" => "application/json"]);
+        $data = (new AnalyticService())->getDocsUsuario($request);
+        return response($data, 200, ["Content-Type" => "application/json"]);
     } catch (Exception | Error $ex) {
         return response(Util::formatException($ex), 500, ["Content-Type" => "application/json"]);
     }
 });
-
-
