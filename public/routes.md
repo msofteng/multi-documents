@@ -53,8 +53,8 @@ http://localhost/api/usuario/login [POST] atualizar TOKEN cada vez que o usuári
 
 
 
-http://localhost/analytics/documento/salvar [POST]
-http://localhost/analytics/usuario/salvar [POST]
+<!-- http://localhost/analytics/documento/salvar [POST] -->
+<!-- http://localhost/analytics/usuario/salvar [POST] -->
 http://localhost/analytics/documento/atualizar [PUT]
 http://localhost/analytics/usuario/atualizar [PUT]
 
